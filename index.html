@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Portfolio</title>
+
+    <!--
+      - favicon
+    -->
+    <link rel="shortcut icon" href="./assets/images/logo.png" type="image/x-icon">
+
+    <!--
+      - custom css link
+    -->
+    <link rel="stylesheet" href="./assets/css/style.css">
+
+
+    <!--
+      - google font link
+    -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<!--
+  - #MAIN
+-->
+
+<main>
+
+    <!--
+      - #SIDEBAR
+    -->
+
+    <aside class="sidebar" data-sidebar>
+
+        <div class="sidebar-info">
+
+            <figure class="avatar-box" >
+                <img src="./assets/images/my-avatar.jpg" alt="Uchkun Shodmonov"  width="80">
+            </figure>
+
+            <div class="info-content">
+                <h4 class="name" title="Uchkun Shodmonov">Uchkun Shodmonov</h4>
+
+                <p class="title">Mobile Software Engineer</p>
+            </div>
+
+            <button class="info_more-btn" data-sidebar-btn>
+                <span>Show Contacts</span>
+
+                <ion-icon name="chevron-down"></ion-icon>
+            </button>
+
+        </div>
+
+        <div class="sidebar-info_more">
+
+            <div class="separator"></div>
+
+            <ul class="contacts-list">
+
+                <li class="contact-item">
+
+                    <div class="icon-box">
+                        <ion-icon name="mail-outline"></ion-icon>
+                    </div>
+
+                    <div class="contact-info">
+                        <p class="contact-title">Email</p>
+
+                        <a href="mailto:shodmonov.uchqun@gmail.com" class="contact-link">shodmonov.uchqun@gmail.com</a>
+                    </div>
+
+                </li>
+
+                <li class="contact-item">
+
+                    <div class="icon-box">
+                        <ion-icon name="phone-portrait-outline"></ion-icon>
+                    </div>
+
+                    <div class="contact-info">
+                        <p class="contact-title">Phone</p>
+
+                        <a href="tel:+998933165960" class="contact-link">+998 (93) 316-59-60</a>
+                    </div>
+
+                </li>
+
+                <li class="contact-item">
+
+                    <div class="icon-box">
+                        <ion-icon name="location-outline"></ion-icon>
+                    </div>
+
+                    <div class="contact-info">
+                        <p class="contact-title">Location</p>
+
+                        <address>Tashkent, Uzbekistan</address>
+                    </div>
+
+                </li>
+
+            </ul>
+
+            <div class="separator"></div>
+
+            <ul class="social-list">
+
+                <li class="social-item">
+                    <a href="https://t.me/shodmonov_uchqun" class="social-link">
+                        <ion-icon name="send"></ion-icon>
+                    </a>
+                </li>
+
+                <li class="social-item">
+                    <a href="https://github.com/UchqunShodmonov" class="social-link">
+                        <ion-icon name="logo-github"></ion-icon>
+                    </a>
+                </li>
+
+                <li class="social-item">
+                    <a href="https://www.linkedin.com/in/uchkunshodmonov/" class="social-link">
+                        <ion-icon name="logo-linkedin"></ion-icon>
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+
+    </aside>
+
+
+    <!--
+      - #main-content
+    -->
+
+    <div class="main-content">
+
+        <!--
+          - #NAVBAR
+        -->
+
+        <nav class="navbar">
+
+            <ul class="navbar-list">
+
+                <li class="navbar-item">
+                    <button class="navbar-link  active" data-nav-link>About</button>
+                </li>
+
+                <li class="navbar-item">
+                    <button class="navbar-link" data-nav-link>Resume</button>
+                </li>
+
+                <li class="navbar-item">
+                    <button class="navbar-link" data-nav-link>Portfolio</button>
+                </li>
+
+                <!-- <li class="navbar-item">
+                    <button class="navbar-link" data-nav-link>Contact</button>
+                </li> -->
+
+            </ul>
+        </nav>
+
+        <!--
+          - #ABOUT
+        -->
+
+        <article class="about  active" data-page="about">
+
+            <header>
+                <h2 class="h2 article-title">About me</h2>
+            </header>
+
+            <section class="about-text">
+                <p>
+                    I’m a Mobile Software Engineer with about three year of experience in Mobile App
+                    Development. Building innovative Android and iOS apps with architecture design for easy upgrades and
+                    bug fixes.
+                </p>
+
+                <ul>
+                    <li>
+                        🤯 Developing for Flutter since 2020.
+                    </li>
+                    <li>
+                        💻 Currently working on very cool projects.
+                    </li>
+                    <li>
+                        🌱 I’m currently working on Unicon Soft.
+                    </li>
+                    <li>
+                        ✌🏻 Looking forward to collaborating with other developers.
+                    </li>
+                    <li>
+                        📫 I'm available to answer your questions related to programming on any platform. Just connect me
+                        :)
+                    </li>
+                </ul>
+            </section>
+
+            <!--
+              - service
+            -->
+
+            <section class="service">
+
+                <h3 class="h3 service-title">What i'm doing</h3>
+
+                <ul class="service-list">
+
+                    <li class="service-item">
+
+                        <div class="service-icon-box">
+                            <img src="./assets/images/icon-app.svg" alt="mobile app icon" width="40">
+                        </div>
+
+                        <div class="service-content-box">
+                            <h4 class="h4 service-item-title">Mobile apps</h4>
+
+                            <p class="service-item-text">
+                                Professional development of applications for iOS and Android with Flutter.
+                            </p>
+                        </div>
+
+                    </li>
+
+                </ul>
+
+            </section>
+
+            <div class="modal-container" data-modal-container>
+
+                <div class="overlay" data-overlay></div>
+
+                <section class="testimonials-modal">
+
+                    <button class="modal-close-btn" data-modal-close-btn>
+                        <ion-icon name="close-outline"></ion-icon>
+                    </button>
+
+                </section>
+            </div>
+<!-- 
+            <section class="about-text">
+
+                <h3 class="h3 service-title">Interests</h3>
+
+                <p>
+                    "iOS-lite" developer :), Apart from being Mobile Software Engineer, I enjoy learn Islam. I like play table
+                    tennis.
+                </p>
+            </section> -->
+        </article>
+
+        <!--
+          - #RESUME
+        -->
+
+        <article class="resume" data-page="resume">
+
+            <header>
+                <h2 class="h2 article-title">Resume</h2>
+            </header>
+
+            <section class="timeline">
+
+                <div class="title-wrapper">
+                    <div class="icon-box">
+                        <ion-icon name="book-outline"></ion-icon>
+                    </div>
+
+                    <h3 class="h3">Education</h3>
+                </div>
+
+                <ol class="timeline-list">
+
+                    <li class="timeline-item">
+
+                        <h4 class="h4 timeline-item-title">Tashkent University of Information Technologies named after Muhammad ibn Musa al-Khwarizmi(TUIT)</h4>
+
+                        <span>2018 — 2022</span>
+
+                        <p class="timeline-text">
+                            Software Engineering
+                        </p>
+
+                    </li>
+
+                </ol>
+
+            </section>
+
+            <section class="timeline">
+
+                <div class="title-wrapper">
+                    <div class="icon-box">
+                        <ion-icon name="book-outline"></ion-icon>
+                    </div>
+
+                    <h3 class="h3">Experience</h3>
+                </div>
+
+                <ol class="timeline-list">
+
+                    <li class="timeline-item">
+
+                        <h4 class="h4 timeline-item-title">Unicon Soft</h4>
+
+                        <span>2022 — Present | Software Engineer | Mobile App Development</span>
+                        <p class="timeline-text">
+                            An electronic document circulation system that provides control of executive discipline. The system consists of functions that automate the processes of document circulation and the control of the execution of tasks, and at the same time, several employees work on the document.
+                        </p>
+
+                    </li>
+
+                    <li class="timeline-item">
+
+                        <h4 class="h4 timeline-item-title">Viento </h4>
+
+                        <span>2021 — 2022 | Flutter Developer</span>
+
+                        <p class="timeline-text">
+                            Worked with the team of 10+ members and provided end-to-end solutions. Designed and
+                            developed more than 4 mobile apps live on Play Store.
+                        </p>
+
+                    </li>
+
+                    <li class="timeline-item">
+
+                        <h4 class="h4 timeline-item-title">Prosofen</h4>
+
+                        <span>2020 — 2021</span>
+
+                        <p class="timeline-text">
+                            Worked with team of 5+ members and provided end-to-end solutions for clients. Designed and
+                            developed more than 2 mobile apps live on Play Store
+                        </p>
+
+                    </li>
+
+                </ol>
+
+            </section>
+
+            <section class="skill">
+
+                <h3 class="h3 skills-title">My skills</h3>
+
+                <ul class="skills-list content-card">
+                    <li class="skills-item">
+
+                        <div class="title-wrapper">
+                            <h5 class="h5">Flutter</h5>
+                            <data value="80">80%</data>
+                        </div>
+
+                        <div class="skill-progress-bg">
+                            <div class="skill-progress-fill" style="width: 80%;"></div>
+                        </div>
+
+                    </li>
+                    <li class="skills-item">
+
+                        <div class="title-wrapper">
+                            <h5 class="h5">Dart</h5>
+                            <data value="80">80%</data>
+                        </div>
+
+                        <div class="skill-progress-bg">
+                            <div class="skill-progress-fill" style="width: 80%;"></div>
+                        </div>
+
+                    </li>
+
+                    <li class="skills-item">
+
+                        <div class="title-wrapper">
+                            <h5 class="h5">Android</h5>
+                            <data value="60">60%</data>
+                        </div>
+
+                        <div class="skill-progress-bg">
+                            <div class="skill-progress-fill" style="width: 60%;"></div>
+                        </div>
+
+                    </li>
+
+                    <li class="skills-item">
+
+                        <div class="title-wrapper">
+                            <h5 class="h5">Java, Kotlin</h5>
+                            <data value="70">70%</data>
+                        </div>
+
+                        <div class="skill-progress-bg">
+                            <div class="skill-progress-fill" style="width: 70%;"></div>
+                        </div>
+
+                    </li>
+
+                    <li class="skills-item">
+
+                        <div class="title-wrapper">
+                            <h5 class="h5">iOS</h5>
+                            <data value="70">60%</data>
+                        </div>
+
+                        <div class="skill-progress-bg">
+                            <div class="skill-progress-fill" style="width: 60%;"></div>
+                        </div>
+
+                    </li>
+
+                    <li class="skills-item">
+
+                        <div class="title-wrapper">
+                            <h5 class="h5">Swift</h5>
+                            <data value="70">60%</data>
+                        </div>
+
+                        <div class="skill-progress-bg">
+                            <div class="skill-progress-fill" style="width: 70%;"></div>
+                        </div>
+
+                    </li>
+
+
+                    <li class="skills-item">
+
+                        <div class="title-wrapper">
+                            <h5 class="h5">JIRA, Agile, TimeDoctor</h5>
+                            <data value="70">70%</data>
+                        </div>
+
+                        <div class="skill-progress-bg">
+                            <div class="skill-progress-fill" style="width: 70%;"></div>
+                        </div>
+
+                    </li>
+
+                    <li class="skills-item">
+
+                        <div class="title-wrapper">
+                            <h5 class="h5">Uzbek</h5>
+                            <data value="100">100%</data>
+                        </div>
+
+                        <div class="skill-progress-bg">
+                            <div class="skill-progress-fill" style="width: 100%;"></div>
+                        </div>
+
+                    </li>
+
+                    <li class="skills-item">
+
+                        <div class="title-wrapper">
+                            <h5 class="h5">English</h5>
+                            <data value="60">60%</data>
+                        </div>
+
+                        <div class="skill-progress-bg">
+                            <div class="skill-progress-fill" style="width: 60%;"></div>
+                        </div>
+
+                    </li>
+
+                </ul>
+
+            </section>
+
+        </article>
+
+
+        <!--
+          - #PORTFOLIO
+        -->
+
+        <article class="portfolio" data-page="portfolio">
+
+            <header>
+                <h2 class="h2 article-title">Portfolio</h2>
+            </header>
+
+            <section class="projects">
+
+                <ul class="filter-list">
+
+                    <li class="filter-item">
+                        <button class="active" data-filter-btn>All</button>
+                    </li>
+
+                    <li class="filter-item">
+                        <button data-filter-btn>Android</button>
+                    </li>
+
+                    <li class="filter-item">
+                        <button data-filter-btn>iOS</button>
+                    </li>
+
+                </ul>
+
+                <div class="filter-select-box">
+
+                    <button class="filter-select" data-select>
+
+                        <div class="select-value" data-selecct-value>Select category</div>
+
+                        <div class="select-icon">
+                            <ion-icon name="chevron-down"></ion-icon>
+                        </div>
+
+                    </button>
+
+                    <ul class="select-list">
+
+                        <li class="select-item">
+                            <button data-select-item>All</button>
+                        </li>
+
+                        <li class="select-item">
+                            <button data-select-item>Android</button>
+                        </li>
+
+                        <li class="select-item">
+                            <button data-select-item>iOS</button>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+                <ul class="project-list">
+                     <!-- ijro.gov.uz -->
+                    <li class="project-item  active" data-filter-item data-category="ios">
+                        <a href="https://apps.apple.com/uz/app/ijro-gov-uz/id6444044841">
+
+                            <figure class="project-img">
+                                <div class="project-item-icon-box">
+                                    <ion-icon name="eye-outline"></ion-icon>
+                                </div>
+
+                                <img src="./assets/images/project_1.webp" alt="finance" loading="lazy">
+                            </figure>
+
+                            <h3 class="project-title">IJRO.GOV.UZ</h3>
+
+                            <p class="project-category">iOS</p>
+                        </a>
+                    </li>
+                    <li class="project-item  active" data-filter-item data-category="android">
+                        <a href="https://play.google.com/store/apps/details?id=uz.uniconsoft.ijro&hl=en_US">
+
+                            <figure class="project-img">
+                                <div class="project-item-icon-box">
+                                    <ion-icon name="eye-outline"></ion-icon>
+                                </div>
+
+                                <img src="./assets/images/project_1.webp" alt="finance" loading="lazy">
+                            </figure>
+
+                            <h3 class="project-title">IJRO.GOV.UZ</h3>
+
+                            <p class="project-category">Android</p>
+                        </a>
+                    </li>
+
+                     <!-- ijro-calendar -->
+                    <li class="project-item  active" data-filter-item data-category="ios">
+                        <a href="https://apps.apple.com/uz/app/ijro-calendar/id6449093586">
+
+                            <figure class="project-img">
+                                <div class="project-item-icon-box">
+                                    <ion-icon name="eye-outline"></ion-icon>
+                                </div>
+
+                                <img src="./assets/images/project_2.webp" alt="finance" loading="lazy">
+                            </figure>
+
+                            <h3 class="project-title">IJRO Calendar</h3>
+
+                            <p class="project-category">iOS</p>
+                        </a>
+                    </li>
+                    <li class="project-item  active" data-filter-item data-category="android">
+                        <a href="https://play.google.com/store/apps/details?id=uz.uniconsoft.calendar">
+
+                            <figure class="project-img">
+                                <div class="project-item-icon-box">
+                                    <ion-icon name="eye-outline"></ion-icon>
+                                </div>
+
+                                <img src="./assets/images/project_2.webp" alt="finance" loading="lazy">
+                            </figure>
+
+                            <h3 class="project-title">IJRO Calendar</h3>
+
+                            <p class="project-category">Android</p>
+                        </a>
+                    </li>
+
+                     <!-- ijro personal task -->
+                     <li class="project-item  active" data-filter-item data-category="ios">
+                        <a href="https://apps.apple.com/uz/app/shaxsiy-topshiriqlar/id6471255683">
+
+                            <figure class="project-img">
+                                <div class="project-item-icon-box">
+                                    <ion-icon name="eye-outline"></ion-icon>
+                                </div>
+
+                                <img src="./assets/images/project_3.webp" alt="finance" loading="lazy">
+                            </figure>
+
+                            <h3 class="project-title">Shaxsiy Topshiriqlar</h3>
+
+                            <p class="project-category">iOS</p>
+                        </a>
+                    </li>
+                    <li class="project-item  active" data-filter-item data-category="android">
+                        <a href="https://play.google.com/store/apps/details?id=uz.us.pt">
+
+                            <figure class="project-img">
+                                <div class="project-item-icon-box">
+                                    <ion-icon name="eye-outline"></ion-icon>
+                                </div>
+
+                                <img src="./assets/images/project_3.webp" alt="finance" loading="lazy">
+                            </figure>
+
+                            <h3 class="project-title">Shaxsiy Topshiriqlar</h3>
+
+                            <p class="project-category">Android</p>
+                        </a>
+                    </li>
+
+                     <!-- cashbek omanat -->
+                     <li class="project-item  active" data-filter-item data-category="ios">
+                        <a href="https://apps.apple.com/us/app/cashbek/id6465134300">
+
+                            <figure class="project-img">
+                                <div class="project-item-icon-box">
+                                    <ion-icon name="eye-outline"></ion-icon>
+                                </div>
+
+                                <img src="./assets/images/project_4.webp" alt="finance" loading="lazy">
+                            </figure>
+
+                            <h3 class="project-title">Shaxsiy Topshiriqlar</h3>
+
+                            <p class="project-category">iOS</p>
+                        </a>
+                    </li>
+                    <li class="project-item  active" data-filter-item data-category="android">
+                        <a href="https://play.google.com/store/apps/details?id=uz.omonat.mobile.cashbek">
+
+                            <figure class="project-img">
+                                <div class="project-item-icon-box">
+                                    <ion-icon name="eye-outline"></ion-icon>
+                                </div>
+
+                                <img src="./assets/images/project_4.webp" alt="finance" loading="lazy">
+                            </figure>
+
+                            <h3 class="project-title">Cashbek</h3>
+
+                            <p class="project-category">Android</p>
+                        </a>
+                    </li>
+
+
+
+
+                     <!-- UGL Management  -->
+                     <li class="project-item  active" data-filter-item data-category="ios">
+                        <a href="https://apps.apple.com/us/app/ugl-management/id1642204648">
+
+                            <figure class="project-img">
+                                <div class="project-item-icon-box">
+                                    <ion-icon name="eye-outline"></ion-icon>
+                                </div>
+
+                                <img src="./assets/images/project_5.webp" alt="finance" loading="lazy">
+                            </figure>
+
+                            <h3 class="project-title">UGL Management</h3>
+
+                            <p class="project-category">iOS</p>
+                        </a>
+                    </li>
+                    <li class="project-item  active" data-filter-item data-category="android">
+                        <a href="https://play.google.com/store/apps/details?id=com.ugl.management">
+
+                            <figure class="project-img">
+                                <div class="project-item-icon-box">
+                                    <ion-icon name="eye-outline"></ion-icon>
+                                </div>
+
+                                <img src="./assets/images/project_5.webp" alt="finance" loading="lazy">
+                            </figure>
+
+                            <h3 class="project-title">UGL Management</h3>
+
+                            <p class="project-category">Android</p>
+                        </a>
+                    </li>
+
+                    <!-- Botio  -->
+                    <li class="project-item  active" data-filter-item data-category="ios">
+                        <a href="https://apps.apple.com/uz/app/botio-telegram-bot-yaratuvchi/id1594013167">
+
+                            <figure class="project-img">
+                                <div class="project-item-icon-box">
+                                    <ion-icon name="eye-outline"></ion-icon>
+                                </div>
+
+                                <img src="./assets/images/project_6.webp" alt="finance" loading="lazy">
+                            </figure>
+
+                            <h3 class="project-title">Botio-Telegram bot yaratuvchi</h3>
+
+                            <p class="project-category">iOS</p>
+                        </a>
+                    </li>
+                    <li class="project-item  active" data-filter-item data-category="android">
+                        <a href="https://play.google.com/store/apps/details?id=uz.bozzi.seller.bot">
+
+                            <figure class="project-img">
+                                <div class="project-item-icon-box">
+                                    <ion-icon name="eye-outline"></ion-icon>
+                                </div>
+
+                                <img src="./assets/images/project_6.webp" alt="finance" loading="lazy">
+                            </figure>
+
+                            <h3 class="project-title">Botio</h3>
+
+                            <p class="project-category">Android</p>
+                        </a>
+                    </li>
+   <!-- Telemag  -->
+   <li class="project-item  active" data-filter-item data-category="ios">
+    <a href="https://apps.apple.com/uz/developer/viento/id1590815368">
+
+        <figure class="project-img">
+            <div class="project-item-icon-box">
+                <ion-icon name="eye-outline"></ion-icon>
+            </div>
+
+            <img src="./assets/images/project_8.webp" alt="finance" loading="lazy">
+        </figure>
+
+        <h3 class="project-title">Telemag</h3>
+
+        <p class="project-category">iOS</p>
+    </a>
+</li>
+
+
+                    <!-- Savdo uchun  -->
+                    <li class="project-item  active" data-filter-item data-category="ios">
+                        <a href="https://apps.apple.com/uz/app/savdo-uchun/id6462882889">
+
+                            <figure class="project-img">
+                                <div class="project-item-icon-box">
+                                    <ion-icon name="eye-outline"></ion-icon>
+                                </div>
+
+                                <img src="./assets/images/project_7.webp" alt="finance" loading="lazy">
+                            </figure>
+
+                            <h3 class="project-title">Savdo uchun</h3>
+
+                            <p class="project-category">iOS</p>
+                        </a>
+                    </li>
+                    <li class="project-item  active" data-filter-item data-category="android">
+                        <a href="https://play.google.com/store/apps/details?id=uz.savdouchun.app">
+
+                            <figure class="project-img">
+                                <div class="project-item-icon-box">
+                                    <ion-icon name="eye-outline"></ion-icon>
+                                </div>
+
+                                <img src="./assets/images/project_7.webp" alt="finance" loading="lazy">
+                            </figure>
+
+                            <h3 class="project-title">Savdo uchun</h3>
+
+                            <p class="project-category">Android</p>
+                        </a>
+                    </li>
+
+                </ul>
+
+
+
+                </ul>
+            </section>
+
+        </article>
+
+
+    </div>
+
+</main>
+
+
+<!--
+  - custom js link
+-->
+<script src="./assets/js/script.js"></script>
+
+<!--
+  - ionicon link
+-->
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+</body>
+
+</html>
