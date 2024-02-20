@@ -1,3 +1,3 @@
 # My portfolio
 
-### https://ushodmonov.github.io/
+### https://shodmonov.github.io/
