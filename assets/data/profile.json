@@ -6,9 +6,9 @@
       "ru": "Учкун Шодмонов"
     },
     "title": {
-      "en": "Software Engineer | Mobile App Development",
-      "uz": "Dasturiy ta'minot muhandisi | Mobil ilovalar ishlab chiqish",
-      "ru": "Инженер-программист | Разработка мобильных приложений"
+      "en": "Software Engineer",
+      "uz": "Software Engineer",
+      "ru": "Инженер-программист"
     },
     "avatar": "./assets/images/my-avatar.jpg"
   },
@@ -58,7 +58,7 @@
         "💻 Hozirda juda qiziqarli loyihalarda ishlamoqdaman.",
         "🌱 Hozirda Unicon Soft'da ishlayman.",
         "✌🏻 Boshqa dasturchilar bilan hamkorlik qilishni intiqlik bilan kutaman.",
-        "📫 Dasturlash bilan bog'liq savollaringizga har qanday platformada javob berishga tayyorman. Faqat bog'laning :)"
+        "📫 Dasturlash bilan bog'liq savollaringizga har qanday platformada javob berishga tayyorman.\nFaqat bog'laning :)"
       ],
       "ru": [
         "🤯 Разрабатываю на Flutter с 2020 года.",

@@ -28,17 +28,44 @@
 
 <body>
 
-<!-- Theme Toggle Button -->
-<button class="theme-toggle-btn" data-theme-toggle aria-label="Toggle theme">
-    <ion-icon name="sunny-outline" class="sun-icon"></ion-icon>
-    <ion-icon name="moon-outline" class="moon-icon" style="display: none;"></ion-icon>
-</button>
-
-<!-- Language Switcher -->
-<div class="language-switcher" data-language-switcher>
-    <button class="language-btn active" data-lang="en">EN</button>
-    <button class="language-btn" data-lang="uz">UZ</button>
-    <button class="language-btn" data-lang="ru">RU</button>
+<!-- Top Navigation Bar -->
+<div class="top-navbar">
+    <!-- Navigation Links -->
+    <nav class="navbar-inline">
+        <ul class="navbar-list-inline">
+            <li class="navbar-item-inline">
+                <button class="navbar-link-inline active" data-nav-link data-page-nav="about" data-i18n="nav.about">About</button>
+            </li>
+            <li class="navbar-item-inline">
+                <button class="navbar-link-inline" data-nav-link data-page-nav="resume" data-i18n="nav.resume">Resume</button>
+            </li>
+            <li class="navbar-item-inline">
+                <button class="navbar-link-inline" data-nav-link data-page-nav="portfolio" data-i18n="nav.portfolio">Portfolio</button>
+            </li>
+        </ul>
+    </nav>
+    
+    <!-- Controls Container -->
+    <div class="controls-container">
+        <!-- Language Switcher Dropdown -->
+        <div class="language-dropdown" data-language-dropdown>
+            <button class="language-current" data-language-current>
+                <span data-current-lang>EN</span>
+                <ion-icon name="chevron-down-outline" class="dropdown-icon"></ion-icon>
+            </button>
+            <div class="language-options" data-language-options>
+                <button class="language-option active" data-lang="en">English</button>
+                <button class="language-option" data-lang="uz">O'zbek</button>
+                <button class="language-option" data-lang="ru">Русский</button>
+            </div>
+        </div>
+        
+        <!-- Theme Toggle Button -->
+        <button class="theme-toggle-btn" data-theme-toggle aria-label="Toggle theme">
+            <ion-icon name="sunny-outline" class="sun-icon"></ion-icon>
+            <ion-icon name="moon-outline" class="moon-icon" style="display: none;"></ion-icon>
+        </button>
+    </div>
 </div>
 
 <!--
@@ -99,31 +126,8 @@
     <div class="main-content">
 
         <!--
-          - #NAVBAR
+          - #NAVBAR (moved to top)
         -->
-
-        <nav class="navbar">
-
-            <ul class="navbar-list">
-
-                <li class="navbar-item">
-                    <button class="navbar-link  active" data-nav-link data-i18n="nav.about">About</button>
-                </li>
-
-                <li class="navbar-item">
-                    <button class="navbar-link" data-nav-link data-i18n="nav.resume">Resume</button>
-                </li>
-
-                <li class="navbar-item">
-                    <button class="navbar-link" data-nav-link data-i18n="nav.portfolio">Portfolio</button>
-                </li>
-
-                <!-- <li class="navbar-item">
-                    <button class="navbar-link" data-nav-link>Contact</button>
-                </li> -->
-
-            </ul>
-        </nav>
 
         <!--
           - #ABOUT

@@ -62,11 +62,16 @@ async function changeLanguage(lang) {
   // Apply translations to static elements
   applyTranslations();
   
-  // Update language buttons
-  document.querySelectorAll('.language-btn').forEach(btn => {
-    btn.classList.remove('active');
-    if (btn.getAttribute('data-lang') === lang) {
-      btn.classList.add('active');
+  // Update language dropdown
+  const currentLangSpan = document.querySelector('[data-current-lang]');
+  if (currentLangSpan) {
+    currentLangSpan.textContent = lang.toUpperCase();
+  }
+  
+  document.querySelectorAll('.language-option').forEach(option => {
+    option.classList.remove('active');
+    if (option.getAttribute('data-lang') === lang) {
+      option.classList.add('active');
     }
   });
   
@@ -93,13 +98,43 @@ function updateSidebarButtonText() {
   }
 }
 
-// Initialize language switcher
+// Initialize language dropdown
 function initLanguageSwitcher() {
-  const languageButtons = document.querySelectorAll('.language-btn');
+  const dropdown = document.querySelector('[data-language-dropdown]');
+  const currentBtn = document.querySelector('[data-language-current]');
+  const currentLangSpan = document.querySelector('[data-current-lang]');
+  const languageOptions = document.querySelectorAll('.language-option');
   
-  languageButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const lang = btn.getAttribute('data-lang');
+  // Toggle dropdown
+  currentBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    dropdown.classList.toggle('active');
+  });
+  
+  // Close dropdown when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!dropdown.contains(e.target)) {
+      dropdown.classList.remove('active');
+    }
+  });
+  
+  // Handle language selection
+  languageOptions.forEach(option => {
+    option.addEventListener('click', () => {
+      const lang = option.getAttribute('data-lang');
+      const langText = option.textContent.trim();
+      
+      // Update current language display
+      currentLangSpan.textContent = lang.toUpperCase();
+      
+      // Update active state
+      languageOptions.forEach(opt => opt.classList.remove('active'));
+      option.classList.add('active');
+      
+      // Close dropdown
+      dropdown.classList.remove('active');
+      
+      // Change language
       changeLanguage(lang);
     });
   });
@@ -447,12 +482,17 @@ document.addEventListener('DOMContentLoaded', async () => {
   // Initialize language first
   await loadTranslations(currentLanguage);
   
-  // Set active language button
-  document.querySelectorAll('.language-btn').forEach(btn => {
-    if (btn.getAttribute('data-lang') === currentLanguage) {
-      btn.classList.add('active');
+  // Set active language in dropdown
+  const currentLangSpan = document.querySelector('[data-current-lang]');
+  if (currentLangSpan) {
+    currentLangSpan.textContent = currentLanguage.toUpperCase();
+  }
+  
+  document.querySelectorAll('.language-option').forEach(option => {
+    if (option.getAttribute('data-lang') === currentLanguage) {
+      option.classList.add('active');
     } else {
-      btn.classList.remove('active');
+      option.classList.remove('active');
     }
   });
   
@@ -556,15 +596,16 @@ const pages = document.querySelectorAll("[data-page]");
 // add event to all nav link
 for (let i = 0; i < navigationLinks.length; i++) {
   navigationLinks[i].addEventListener("click", function () {
+    const targetPage = this.getAttribute('data-page-nav');
 
-    for (let i = 0; i < pages.length; i++) {
-      if (this.innerHTML.toLowerCase() === pages[i].dataset.page) {
-        pages[i].classList.add("active");
-        navigationLinks[i].classList.add("active");
+    for (let j = 0; j < pages.length; j++) {
+      if (targetPage === pages[j].dataset.page) {
+        pages[j].classList.add("active");
+        navigationLinks[j].classList.add("active");
         window.scrollTo(0, 0);
       } else {
-        pages[i].classList.remove("active");
-        navigationLinks[i].classList.remove("active");
+        pages[j].classList.remove("active");
+        navigationLinks[j].classList.remove("active");
       }
     }
 
