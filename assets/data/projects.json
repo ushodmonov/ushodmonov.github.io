@@ -1,0 +1,95 @@
+[
+  
+  {
+    "id": 1,
+    "title": "IJRO.GOV.UZ",
+    "image": "./assets/images/project_1.webp",
+    "iosUrl": "https://apps.apple.com/uz/app/ijro-gov-uz/id6444044841",
+    "androidUrl": "https://play.google.com/store/apps/details?id=uz.uniconsoft.ijro&hl=en_US"
+  },
+  {
+    "id": 2,
+    "title": "IJRO Calendar",
+    "image": "./assets/images/project_2.webp",
+    "iosUrl": "https://apps.apple.com/uz/app/ijro-calendar/id6449093586",
+    "androidUrl": "https://play.google.com/store/apps/details?id=uz.uniconsoft.calendar"
+  },
+  {
+    "id": 3,
+    "title": "Shaxsiy Topshiriqlar",
+    "image": "./assets/images/project_3.webp",
+    "iosUrl": "https://apps.apple.com/uz/app/shaxsiy-topshiriqlar/id6471255683",
+    "androidUrl": "https://play.google.com/store/apps/details?id=uz.us.pt"
+  },
+  {
+    "id": 4,
+    "title": "Raqamli Mahalla",
+    "image": "./assets/images/mahalla.png",
+    "iosUrl": "https://apps.apple.com/us/app/raqamli-mahalla/id6746395951",
+    "androidUrl": "https://play.google.com/store/apps/details?id=uz.uniconsoft.mahalla"
+  },
+  {
+    "id": 5,
+    "title": "Cashbek",
+    "image": "./assets/images/project_4.webp",
+    "iosUrl": "https://apps.apple.com/us/app/cashbek/id6465134300",
+    "androidUrl": "https://play.google.com/store/apps/details?id=uz.omonat.mobile.cashbek"
+  },
+  {
+    "id": 6,
+    "title": "UGL Management",
+    "image": "./assets/images/project_5.webp",
+    "iosUrl": "https://apps.apple.com/us/app/ugl-management/id1642204648",
+    "androidUrl": "https://play.google.com/store/apps/details?id=com.ugl.management"
+  },
+  {
+    "id": 7,
+    "title": "Botio-Telegram bot yaratuvchi",
+    "image": "./assets/images/project_6.webp",
+    "iosUrl": "https://apps.apple.com/uz/app/botio-telegram-bot-yaratuvchi/id1594013167",
+    "androidUrl": "https://play.google.com/store/apps/details?id=uz.bozzi.seller.bot"
+  },
+  {
+    "id": 8,
+    "title": "Telemag",
+    "image": "./assets/images/project_8.webp",
+    "iosUrl": "https://apps.apple.com/uz/developer/viento/id1590815368",
+    "androidUrl": null
+  },
+  {
+    "id": 9,
+    "title": "Savdo uchun",
+    "image": "./assets/images/project_7.webp",
+    "iosUrl": "https://apps.apple.com/uz/app/savdo-uchun/id6462882889",
+    "androidUrl": "https://play.google.com/store/apps/details?id=uz.savdouchun.app"
+  },
+  {
+    "id": 10,
+    "title": "Shougram",
+    "image": "./assets/images/project_9.png",
+    "iosUrl": "https://apps.apple.com/uz/app/shougram/id6499446082",
+    "androidUrl": "https://play.google.com/store/apps/details?id=uz.app.shougram"
+  },
+  {
+    "id": 11,
+    "title": "ARkon",
+    "image": "./assets/images/project_10.png",
+    "iosUrl": "https://apps.apple.com/us/app/arkon-uz/id1483231581",
+    "androidUrl": "https://play.google.com/store/apps/details?id=uz.arkon.app"
+  },
+  {
+    "id": 12,
+    "title": "Arbuz",
+    "image": "./assets/images/arbuz.png",
+    "iosUrl": "https://apps.apple.com/uz/app/arb-uz/id6739709640",
+    "androidUrl": "https://play.google.com/store/apps/details?id=uz.arb.app"
+  },
+  {
+    "id": 13,
+    "title": "Business Arbuz",
+    "image": "./assets/images/business_arbuz.png",
+    "iosUrl": "https://apps.apple.com/uz/app/business-arbuz/id6743079552",
+    "androidUrl": "https://play.google.com/store/apps/details?id=uz.arb.business"
+  }
+]
+

@@ -7,6 +7,67 @@ const elementToggleFunc = function (elem) { elem.classList.toggle("active"); }
 
 
 
+// Load and render projects from JSON
+async function loadProjects() {
+  try {
+    const response = await fetch('./assets/data/projects.json');
+    const projects = await response.json();
+    
+    const projectList = document.getElementById('project-list');
+    
+    // Clear loading message
+    projectList.innerHTML = '';
+    
+    projects.forEach(project => {
+      const category = (project.iosUrl && project.androidUrl) ? 'all' : 
+                       (project.iosUrl ? 'ios' : 'android');
+      
+      const platformText = (project.iosUrl && project.androidUrl) ? 'iOS | Android' :
+                          (project.iosUrl ? 'iOS' : 'Android');
+      
+      const li = document.createElement('li');
+      li.className = 'project-item';
+      li.setAttribute('data-filter-item', '');
+      li.setAttribute('data-category', category);
+      
+      if (project.iosUrl) {
+        li.setAttribute('data-ios-url', project.iosUrl);
+      }
+      if (project.androidUrl) {
+        li.setAttribute('data-android-url', project.androidUrl);
+      }
+      
+      li.innerHTML = `
+        <a href="#" class="project-link">
+          <figure class="project-img">
+            <div class="project-item-icon-box">
+              <ion-icon name="eye-outline"></ion-icon>
+            </div>
+            <img src="${project.image}" alt="${project.title}" loading="lazy">
+          </figure>
+          <h3 class="project-title">${project.title}</h3>
+          <p class="project-category">${platformText}</p>
+        </a>
+      `;
+      
+      projectList.appendChild(li);
+    });
+    
+    // Initialize platform modal after projects are loaded
+    initPlatformModal();
+    
+  } catch (error) {
+    console.error('Error loading projects:', error);
+    const projectList = document.getElementById('project-list');
+    projectList.innerHTML = '<li class="error-message">Failed to load projects. Please refresh the page.</li>';
+  }
+}
+
+// Call loadProjects when DOM is ready
+document.addEventListener('DOMContentLoaded', loadProjects);
+
+
+
 // sidebar variables
 const sidebar = document.querySelector("[data-sidebar]");
 const sidebarBtn = document.querySelector("[data-sidebar-btn]");
@@ -55,63 +116,7 @@ overlay.addEventListener("click", testimonialsModalFunc);
 
 
 
-// custom select variables
-const select = document.querySelector("[data-select]");
-const selectItems = document.querySelectorAll("[data-select-item]");
-const selectValue = document.querySelector("[data-selecct-value]");
-const filterBtn = document.querySelectorAll("[data-filter-btn]");
-
-select.addEventListener("click", function () { elementToggleFunc(this); });
-
-// add event in all select items
-for (let i = 0; i < selectItems.length; i++) {
-  selectItems[i].addEventListener("click", function () {
-
-    let selectedValue = this.innerText.toLowerCase();
-    selectValue.innerText = this.innerText;
-    elementToggleFunc(select);
-    filterFunc(selectedValue);
-
-  });
-}
-
-// filter variables
-const filterItems = document.querySelectorAll("[data-filter-item]");
-
-const filterFunc = function (selectedValue) {
-
-  for (let i = 0; i < filterItems.length; i++) {
-
-    if (selectedValue === "all") {
-      filterItems[i].classList.add("active");
-    } else if (selectedValue === filterItems[i].dataset.category) {
-      filterItems[i].classList.add("active");
-    } else {
-      filterItems[i].classList.remove("active");
-    }
-
-  }
-
-}
-
-// add event in all filter button items for large screen
-let lastClickedBtn = filterBtn[0];
-
-for (let i = 0; i < filterBtn.length; i++) {
-
-  filterBtn[i].addEventListener("click", function () {
-
-    let selectedValue = this.innerText.toLowerCase();
-    selectValue.innerText = this.innerText;
-    filterFunc(selectedValue);
-
-    lastClickedBtn.classList.remove("active");
-    this.classList.add("active");
-    lastClickedBtn = this;
-
-  });
-
-}
+// Filter functionality removed - all projects are now always visible
 
 
 
@@ -155,5 +160,64 @@ for (let i = 0; i < navigationLinks.length; i++) {
       }
     }
 
+  });
+}
+
+
+
+// Platform selector modal functionality
+function initPlatformModal() {
+  const platformModalContainer = document.querySelector("[data-platform-modal-container]");
+  const platformOverlay = document.querySelector("[data-platform-overlay]");
+  const platformModalCloseBtn = document.querySelector("[data-platform-modal-close-btn]");
+  const iosBtn = document.querySelector("[data-ios-btn]");
+  const androidBtn = document.querySelector("[data-android-btn]");
+  const projectLinks = document.querySelectorAll(".project-link");
+
+  // toggle platform modal
+  const platformModalFunc = function () {
+    platformModalContainer.classList.toggle("active");
+    platformOverlay.classList.toggle("active");
+  }
+
+  // add click event to all project links
+  for (let i = 0; i < projectLinks.length; i++) {
+    projectLinks[i].addEventListener("click", function (e) {
+      e.preventDefault();
+      
+      const projectItem = this.closest('.project-item');
+      const iosUrl = projectItem.dataset.iosUrl;
+      const androidUrl = projectItem.dataset.androidUrl;
+      
+      // If both URLs exist, show modal
+      if (iosUrl && androidUrl) {
+        iosBtn.href = iosUrl;
+        androidBtn.href = androidUrl;
+        platformModalFunc();
+      } else if (iosUrl) {
+        // Only iOS available
+        window.open(iosUrl, '_blank');
+      } else if (androidUrl) {
+        // Only Android available
+        window.open(androidUrl, '_blank');
+      }
+    });
+  }
+
+  // Close modal events
+  platformModalCloseBtn.addEventListener("click", platformModalFunc);
+  platformOverlay.addEventListener("click", platformModalFunc);
+
+  // Open links in new tab when platform button is clicked
+  iosBtn.addEventListener("click", function(e) {
+    e.preventDefault();
+    window.open(this.href, '_blank');
+    platformModalFunc();
+  });
+
+  androidBtn.addEventListener("click", function(e) {
+    e.preventDefault();
+    window.open(this.href, '_blank');
+    platformModalFunc();
   });
 }
