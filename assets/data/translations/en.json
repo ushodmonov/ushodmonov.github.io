@@ -1,0 +1,52 @@
+{
+  "nav": {
+    "about": "About",
+    "resume": "Resume",
+    "portfolio": "Portfolio"
+  },
+  "sidebar": {
+    "showContacts": "Show Contacts",
+    "hideContacts": "Hide Contacts",
+    "contactTitles": {
+      "email": "Email",
+      "phone": "Phone",
+      "location": "Location"
+    }
+  },
+  "about": {
+    "title": "About me",
+    "servicesTitle": "What i'm doing"
+  },
+  "resume": {
+    "title": "Resume",
+    "experienceTitle": "Experience",
+    "educationTitle": "Education",
+    "skillsTitle": "My skills"
+  },
+  "portfolio": {
+    "title": "Portfolio"
+  },
+  "loading": {
+    "projects": "Loading projects...",
+    "experiences": "Loading experiences...",
+    "education": "Loading education...",
+    "skills": "Loading skills...",
+    "contacts": "Loading contacts...",
+    "social": "Loading social links...",
+    "services": "Loading services..."
+  },
+  "errors": {
+    "loadProjects": "Failed to load projects. Please refresh the page.",
+    "loadExperiences": "Failed to load experiences.",
+    "loadEducation": "Failed to load education.",
+    "loadSkills": "Failed to load skills.",
+    "loadProfile": "Failed to load profile information."
+  },
+  "platformModal": {
+    "title": "Select Platform",
+    "description": "This app is available on both platforms. Choose where to view it:",
+    "ios": "iOS App Store",
+    "android": "Google Play Store"
+  }
+}
+

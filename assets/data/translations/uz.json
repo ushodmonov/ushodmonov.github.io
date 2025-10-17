@@ -1,0 +1,52 @@
+{
+  "nav": {
+    "about": "Men haqimda",
+    "resume": "Rezyume",
+    "portfolio": "Portfolio"
+  },
+  "sidebar": {
+    "showContacts": "Kontaktlarni ko'rsatish",
+    "hideContacts": "Kontaktlarni yashirish",
+    "contactTitles": {
+      "email": "Elektron pochta",
+      "phone": "Telefon",
+      "location": "Manzil"
+    }
+  },
+  "about": {
+    "title": "Men haqimda",
+    "servicesTitle": "Men nima qilaman"
+  },
+  "resume": {
+    "title": "Rezyume",
+    "experienceTitle": "Tajriba",
+    "educationTitle": "Ta'lim",
+    "skillsTitle": "Mening ko'nikmalarim"
+  },
+  "portfolio": {
+    "title": "Portfolio"
+  },
+  "loading": {
+    "projects": "Loyihalar yuklanmoqda...",
+    "experiences": "Tajribalar yuklanmoqda...",
+    "education": "Ta'lim ma'lumotlari yuklanmoqda...",
+    "skills": "Ko'nikmalar yuklanmoqda...",
+    "contacts": "Kontaktlar yuklanmoqda...",
+    "social": "Ijtimoiy tarmoqlar yuklanmoqda...",
+    "services": "Xizmatlar yuklanmoqda..."
+  },
+  "errors": {
+    "loadProjects": "Loyihalarni yuklashda xatolik. Iltimos, sahifani yangilang.",
+    "loadExperiences": "Tajribalarni yuklashda xatolik.",
+    "loadEducation": "Ta'lim ma'lumotlarini yuklashda xatolik.",
+    "loadSkills": "Ko'nikmalarni yuklashda xatolik.",
+    "loadProfile": "Profil ma'lumotlarini yuklashda xatolik."
+  },
+  "platformModal": {
+    "title": "Platformani tanlang",
+    "description": "Bu ilova ikki platformada ham mavjud. Qayerda ko'rishni tanlang:",
+    "ios": "iOS App Store",
+    "android": "Google Play Store"
+  }
+}
+

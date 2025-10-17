@@ -1,0 +1,88 @@
+{
+  "personal": {
+    "name": {
+      "en": "Uchkun Shodmonov",
+      "uz": "Uchqun Shodmonov",
+      "ru": "Учкун Шодмонов"
+    },
+    "title": {
+      "en": "Software Engineer | Mobile App Development",
+      "uz": "Dasturiy ta'minot muhandisi | Mobil ilovalar ishlab chiqish",
+      "ru": "Инженер-программист | Разработка мобильных приложений"
+    },
+    "avatar": "./assets/images/my-avatar.jpg"
+  },
+  "contact": {
+    "email": "shodmonov.uchqun@gmail.com",
+    "phone": "+998933165960",
+    "phoneDisplay": "+998 (93) 316-59-60",
+    "location": {
+      "en": "Tashkent, Uzbekistan",
+      "uz": "Toshkent, O'zbekiston",
+      "ru": "Ташкент, Узбекистан"
+    }
+  },
+  "social": [
+    {
+      "platform": "telegram",
+      "url": "https://t.me/shodmonov_uchqun",
+      "icon": "send"
+    },
+    {
+      "platform": "github",
+      "url": "https://github.com/ushodmonov",
+      "icon": "logo-github"
+    },
+    {
+      "platform": "linkedin",
+      "url": "https://www.linkedin.com/in/uchkunshodmonov/",
+      "icon": "logo-linkedin"
+    }
+  ],
+  "about": {
+    "introduction": {
+      "en": "I'm a Mobile Software Engineer with about five year of experience in Mobile App Development. Building innovative Android and iOS apps with architecture design for easy upgrades and bug fixes.",
+      "uz": "Men Mobile App Development sohasida taxminan besh yillik tajribaga ega Mobile Software Engineerman. Android va iOS uchun oson yangilanish va xatolarni tuzatish uchun arxitektura dizayni bilan innovatsion ilovalar yarataman.",
+      "ru": "Я Mobile Software Engineer с примерно пятилетним опытом разработки мобильных приложений. Создаю инновационные приложения для Android и iOS с архитектурным дизайном для легкого обновления и исправления ошибок."
+    },
+    "highlights": {
+      "en": [
+        "🤯 Developing for Flutter since 2020.",
+        "💻 Currently working on very cool projects.",
+        "🌱 I'm currently working on Unicon Soft.",
+        "✌🏻 Looking forward to collaborating with other developers.",
+        "📫 I'm available to answer your questions related to programming on any platform. Just connect me :)"
+      ],
+      "uz": [
+        "🤯 2020 yildan beri Flutter'da dastur ishlab chiqaman.",
+        "💻 Hozirda juda qiziqarli loyihalarda ishlamoqdaman.",
+        "🌱 Hozirda Unicon Soft'da ishlayman.",
+        "✌🏻 Boshqa dasturchilar bilan hamkorlik qilishni intiqlik bilan kutaman.",
+        "📫 Dasturlash bilan bog'liq savollaringizga har qanday platformada javob berishga tayyorman. Faqat bog'laning :)"
+      ],
+      "ru": [
+        "🤯 Разрабатываю на Flutter с 2020 года.",
+        "💻 В настоящее время работаю над очень интересными проектами.",
+        "🌱 Сейчас работаю в Unicon Soft.",
+        "✌🏻 С нетерпением жду сотрудничества с другими разработчиками.",
+        "📫 Готов ответить на ваши вопросы, связанные с программированием, на любой платформе. Просто свяжитесь со мной :)"
+      ]
+    }
+  },
+  "services": [
+    {
+      "title": {
+        "en": "Mobile apps",
+        "uz": "Mobil ilovalar",
+        "ru": "Мобильные приложения"
+      },
+      "description": {
+        "en": "Professional development of applications for iOS and Android with Flutter.",
+        "uz": "Flutter bilan iOS va Android uchun ilovalarni professional darajada ishlab chiqish.",
+        "ru": "Профессиональная разработка приложений для iOS и Android с помощью Flutter."
+      },
+      "icon": "./assets/images/icon-app.svg"
+    }
+  ]
+}
+

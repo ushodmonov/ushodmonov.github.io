@@ -1,0 +1,52 @@
+{
+  "nav": {
+    "about": "Обо мне",
+    "resume": "Резюме",
+    "portfolio": "Портфолио"
+  },
+  "sidebar": {
+    "showContacts": "Показать контакты",
+    "hideContacts": "Скрыть контакты",
+    "contactTitles": {
+      "email": "Электронная почта",
+      "phone": "Телефон",
+      "location": "Адрес"
+    }
+  },
+  "about": {
+    "title": "Обо мне",
+    "servicesTitle": "Чем я занимаюсь"
+  },
+  "resume": {
+    "title": "Резюме",
+    "experienceTitle": "Опыт работы",
+    "educationTitle": "Образование",
+    "skillsTitle": "Мои навыки"
+  },
+  "portfolio": {
+    "title": "Портфолио"
+  },
+  "loading": {
+    "projects": "Загрузка проектов...",
+    "experiences": "Загрузка опыта работы...",
+    "education": "Загрузка образования...",
+    "skills": "Загрузка навыков...",
+    "contacts": "Загрузка контактов...",
+    "social": "Загрузка социальных сетей...",
+    "services": "Загрузка услуг..."
+  },
+  "errors": {
+    "loadProjects": "Не удалось загрузить проекты. Пожалуйста, обновите страницу.",
+    "loadExperiences": "Не удалось загрузить опыт работы.",
+    "loadEducation": "Не удалось загрузить образование.",
+    "loadSkills": "Не удалось загрузить навыки.",
+    "loadProfile": "Не удалось загрузить информацию профиля."
+  },
+  "platformModal": {
+    "title": "Выберите платформу",
+    "description": "Это приложение доступно на обеих платформах. Выберите, где просмотреть:",
+    "ios": "iOS App Store",
+    "android": "Google Play Store"
+  }
+}
+

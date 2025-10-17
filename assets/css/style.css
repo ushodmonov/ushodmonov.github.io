@@ -549,6 +549,59 @@ main {
 
 
 /*-----------------------------------*\
+  #LANGUAGE SWITCHER
+\*-----------------------------------*/
+
+.language-switcher {
+  position: fixed;
+  top: 80px;
+  right: 20px;
+  display: flex;
+  gap: 8px;
+  background: var(--border-gradient-onyx);
+  padding: 4px;
+  border-radius: 24px;
+  box-shadow: var(--shadow-2);
+  z-index: 10;
+}
+
+.language-switcher::before {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  background: var(--bg-gradient-jet);
+  border-radius: inherit;
+  z-index: -1;
+}
+
+.language-btn {
+  padding: 8px 12px;
+  border-radius: 18px;
+  font-size: var(--fs-8);
+  font-weight: var(--fw-500);
+  color: var(--light-gray);
+  background: transparent;
+  transition: var(--transition-1);
+  cursor: pointer;
+  min-width: 40px;
+}
+
+.language-btn:hover {
+  color: var(--white-2);
+}
+
+.language-btn.active {
+  background: var(--orange-yellow-crayola);
+  color: var(--smoky-black);
+  font-weight: var(--fw-600);
+}
+
+body.light-mode .language-btn.active {
+  color: var(--white-1);
+}
+
+
+/*-----------------------------------*\
   #NAVBAR
 \*-----------------------------------*/
 
@@ -1439,6 +1492,20 @@ textarea.form-input::-webkit-resizer { display: none; }
 
 
   /**
+   * LANGUAGE SWITCHER
+   */
+
+  .language-switcher {
+    top: 85px;
+  }
+
+  .language-btn {
+    padding: 10px 14px;
+    font-size: var(--fs-7);
+  }
+
+
+  /**
    * client
    */
 
@@ -1882,6 +1949,16 @@ textarea.form-input::-webkit-resizer { display: none; }
   }
 
 
+  /**
+   * LANGUAGE SWITCHER
+   */
+
+  .language-switcher {
+    top: 100px;
+    right: 30px;
+  }
+
+
 
   /**
    * REUSED STYLE
@@ -2009,6 +2086,16 @@ textarea.form-input::-webkit-resizer { display: none; }
 
   .theme-toggle-btn {
     top: 60px;
+    right: calc(50% - 600px + 30px);
+  }
+
+
+  /**
+   * LANGUAGE SWITCHER
+   */
+
+  .language-switcher {
+    top: 130px;
     right: calc(50% - 600px + 30px);
   }
 

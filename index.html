@@ -34,6 +34,13 @@
     <ion-icon name="moon-outline" class="moon-icon" style="display: none;"></ion-icon>
 </button>
 
+<!-- Language Switcher -->
+<div class="language-switcher" data-language-switcher>
+    <button class="language-btn active" data-lang="en">EN</button>
+    <button class="language-btn" data-lang="uz">UZ</button>
+    <button class="language-btn" data-lang="ru">RU</button>
+</div>
+
 <!--
   - #MAIN
 -->
@@ -48,18 +55,18 @@
 
         <div class="sidebar-info">
 
-            <figure class="avatar-box" >
-                <img src="./assets/images/my-avatar.jpg" alt="Uchkun Shodmonov"  width="80">
+            <figure class="avatar-box">
+                <img id="profile-avatar" src="./assets/images/my-avatar.jpg" alt="Loading..." width="80">
             </figure>
 
             <div class="info-content">
-                <h4 class="name" title="Uchkun Shodmonov">Uchkun Shodmonov</h4>
+                <h4 class="name" id="profile-name" title="">Loading...</h4>
 
-                <p class="title">Mobile Software Engineer</p>
+                <p class="title" id="profile-title">Loading...</p>
             </div>
 
             <button class="info_more-btn" data-sidebar-btn>
-                <span>Show Contacts</span>
+                <span data-i18n="sidebar.showContacts">Show Contacts</span>
 
                 <ion-icon name="chevron-down"></ion-icon>
             </button>
@@ -70,73 +77,14 @@
 
             <div class="separator"></div>
 
-            <ul class="contacts-list">
-
-                <li class="contact-item">
-
-                    <div class="icon-box">
-                        <ion-icon name="mail-outline"></ion-icon>
-                    </div>
-
-                    <div class="contact-info">
-                        <p class="contact-title">Email</p>
-
-                        <a href="mailto:shodmonov.uchqun@gmail.com" class="contact-link">shodmonov.uchqun@gmail.com</a>
-                    </div>
-
-                </li>
-
-                <li class="contact-item">
-
-                    <div class="icon-box">
-                        <ion-icon name="phone-portrait-outline"></ion-icon>
-                    </div>
-
-                    <div class="contact-info">
-                        <p class="contact-title">Phone</p>
-
-                        <a href="tel:+998933165960" class="contact-link">+998 (93) 316-59-60</a>
-                    </div>
-
-                </li>
-
-                <li class="contact-item">
-
-                    <div class="icon-box">
-                        <ion-icon name="location-outline"></ion-icon>
-                    </div>
-
-                    <div class="contact-info">
-                        <p class="contact-title">Location</p>
-
-                        <address>Tashkent, Uzbekistan</address>
-                    </div>
-
-                </li>
-
+            <ul class="contacts-list" id="contacts-list">
+                <li class="loading-message">Loading contacts...</li>
             </ul>
 
             <div class="separator"></div>
 
-            <ul class="social-list">
-
-                <li class="social-item">
-                    <a href="https://t.me/shodmonov_uchqun" class="social-link">
-                        <ion-icon name="send"></ion-icon>
-                    </a>
-                </li>
-
-                <li class="social-item">
-                    <a href="https://github.com/ushodmonov" class="social-link">
-                        <ion-icon name="logo-github"></ion-icon>
-                    </a>
-                </li>
-
-                <li class="social-item">
-                    <a href="https://www.linkedin.com/in/uchkunshodmonov/" class="social-link">
-                        <ion-icon name="logo-linkedin"></ion-icon>
-                    </a>
-                </li>
+            <ul class="social-list" id="social-list">
+                <li class="loading-message">Loading social links...</li>
             </ul>
 
         </div>
@@ -159,15 +107,15 @@
             <ul class="navbar-list">
 
                 <li class="navbar-item">
-                    <button class="navbar-link  active" data-nav-link>About</button>
+                    <button class="navbar-link  active" data-nav-link data-i18n="nav.about">About</button>
                 </li>
 
                 <li class="navbar-item">
-                    <button class="navbar-link" data-nav-link>Resume</button>
+                    <button class="navbar-link" data-nav-link data-i18n="nav.resume">Resume</button>
                 </li>
 
                 <li class="navbar-item">
-                    <button class="navbar-link" data-nav-link>Portfolio</button>
+                    <button class="navbar-link" data-nav-link data-i18n="nav.portfolio">Portfolio</button>
                 </li>
 
                 <!-- <li class="navbar-item">
@@ -184,34 +132,11 @@
         <article class="about  active" data-page="about">
 
             <header>
-                <h2 class="h2 article-title">About me</h2>
+                <h2 class="h2 article-title" data-i18n="about.title">About me</h2>
             </header>
 
-            <section class="about-text">
-                <p>
-                    I’m a Mobile Software Engineer with about three year of experience in Mobile App
-                    Development. Building innovative Android and iOS apps with architecture design for easy upgrades and
-                    bug fixes.
-                </p>
-
-                <ul>
-                    <li>
-                        🤯 Developing for Flutter since 2020.
-                    </li>
-                    <li>
-                        💻 Currently working on very cool projects.
-                    </li>
-                    <li>
-                        🌱 I’m currently working on Unicon Soft.
-                    </li>
-                    <li>
-                        ✌🏻 Looking forward to collaborating with other developers.
-                    </li>
-                    <li>
-                        📫 I'm available to answer your questions related to programming on any platform. Just connect me
-                        :)
-                    </li>
-                </ul>
+            <section class="about-text" id="about-section">
+                <p>Loading...</p>
             </section>
 
             <!--
@@ -220,26 +145,10 @@
 
             <section class="service">
 
-                <h3 class="h3 service-title">What i'm doing</h3>
+                <h3 class="h3 service-title" data-i18n="about.servicesTitle">What i'm doing</h3>
 
-                <ul class="service-list">
-
-                    <li class="service-item">
-
-                        <div class="service-icon-box">
-                            <img src="./assets/images/icon-app.svg" alt="mobile app icon" width="40">
-                        </div>
-
-                        <div class="service-content-box">
-                            <h4 class="h4 service-item-title">Mobile apps</h4>
-
-                            <p class="service-item-text">
-                                Professional development of applications for iOS and Android with Flutter.
-                            </p>
-                        </div>
-
-                    </li>
-
+                <ul class="service-list" id="services-list">
+                    <li class="loading-message">Loading services...</li>
                 </ul>
 
             </section>
@@ -275,7 +184,7 @@
         <article class="resume" data-page="resume">
 
             <header>
-                <h2 class="h2 article-title">Resume</h2>
+                <h2 class="h2 article-title" data-i18n="resume.title">Resume</h2>
             </header>
 
 
@@ -286,48 +195,11 @@
                         <ion-icon name="book-outline"></ion-icon>
                     </div>
 
-                    <h3 class="h3">Experience</h3>
+                    <h3 class="h3" data-i18n="resume.experienceTitle">Experience</h3>
                 </div>
 
-                <ol class="timeline-list">
-
-                    <li class="timeline-item">
-
-                        <h4 class="h4 timeline-item-title">Unicon Soft</h4>
-
-                        <span>2022 — Present | Software Engineer | Mobile App Development</span>
-                        <p class="timeline-text">
-                            An electronic document circulation system that provides control of executive discipline. The system consists of functions that automate the processes of document circulation and the control of the execution of tasks, and at the same time, several employees work on the document.
-                        </p>
-
-                    </li>
-
-                    <li class="timeline-item">
-
-                        <h4 class="h4 timeline-item-title">Viento </h4>
-
-                        <span>2021 — 2022 | Flutter Developer</span>
-
-                        <p class="timeline-text">
-                            Worked with the team of 10+ members and provided end-to-end solutions. Designed and
-                            developed more than 5 mobile apps live on Play Store.
-                        </p>
-
-                    </li>
-
-                    <li class="timeline-item">
-
-                        <h4 class="h4 timeline-item-title">Prosofen</h4>
-
-                        <span>2020 — 2021</span>
-
-                        <p class="timeline-text">
-                            Worked with team of 5+ members and provided end-to-end solutions for clients. Designed and
-                            developed more than 2 mobile apps live on Play Store
-                        </p>
-
-                    </li>
-
+                <ol class="timeline-list" id="experience-list">
+                    <li class="loading-message">Loading experiences...</li>
                 </ol>
 
             </section>
@@ -338,152 +210,19 @@
                         <ion-icon name="book-outline"></ion-icon>
                     </div>
 
-                    <h3 class="h3">Education</h3>
+                    <h3 class="h3" data-i18n="resume.educationTitle">Education</h3>
                 </div>
-                <ol class="timeline-list">
-                    <li class="timeline-item">
-
-                        <h4 class="h4 timeline-item-title">Tashkent University of Information Technologies named after Muhammad ibn Musa al-Khwarizmi(TUIT)</h4>
-
-                        <span>2018 — 2022</span>
-
-                        <p class="timeline-text">
-                            Software Engineering
-                        </p>
-
-                    </li>
-
+                <ol class="timeline-list" id="education-list">
+                    <li class="loading-message">Loading education...</li>
                 </ol>
 
             </section>
             <section class="skill">
 
-                <h3 class="h3 skills-title">My skills</h3>
+                <h3 class="h3 skills-title" data-i18n="resume.skillsTitle">My skills</h3>
 
-                <ul class="skills-list content-card">
-                    <li class="skills-item">
-
-                        <div class="title-wrapper">
-                            <h5 class="h5">Flutter</h5>
-                            <data value="90">90%</data>
-                        </div>
-
-                        <div class="skill-progress-bg">
-                            <div class="skill-progress-fill" style="width: 90%;"></div>
-                        </div>
-
-                    </li>
-                    <li class="skills-item">
-
-                        <div class="title-wrapper">
-                            <h5 class="h5">Dart</h5>
-                            <data value="90">90%</data>
-                        </div>
-
-                        <div class="skill-progress-bg">
-                            <div class="skill-progress-fill" style="width: 90%;"></div>
-                        </div>
-
-                    </li>
-
-                    <li class="skills-item">
-                        <div class="title-wrapper">
-                            <h5 class="h5">Android</h5>
-                            <data value="90">90%</data>
-                        </div>
-
-                        <div class="skill-progress-bg">
-                            <div class="skill-progress-fill" style="width: 90%;"></div>
-                        </div>
-                    </li>
-
-                    <li class="skills-item">
-
-                        <div class="title-wrapper">
-                            <h5 class="h5">Java, Kotlin</h5>
-                            <data value="70">70%</data>
-                        </div>
-
-                        <div class="skill-progress-bg">
-                            <div class="skill-progress-fill" style="width: 70%;"></div>
-                        </div>
-
-                    </li>
-
-                    <li class="skills-item">
-
-                        <div class="title-wrapper">
-                            <h5 class="h5">iOS</h5>
-                            <data value="90">90%</data>
-                        </div>
-
-                        <div class="skill-progress-bg">
-                            <div class="skill-progress-fill" style="width: 90%;"></div>
-                        </div>
-                    </li>
-
-                    <li class="skills-item">
-
-                        <div class="title-wrapper">
-                            <h5 class="h5">Swift</h5>
-                            <data value="70">70%</data>
-                        </div>
-
-                        <div class="skill-progress-bg">
-                            <div class="skill-progress-fill" style="width: 70%;"></div>
-                        </div>
-                    </li>
-                    <li class="skills-item">
-
-                        <div class="title-wrapper">
-                            <h5 class="h5">Sqlite</h5>
-                            <data value="70">70%</data>
-                        </div>
-
-                        <div class="skill-progress-bg">
-                            <div class="skill-progress-fill" style="width: 70%;"></div>
-                        </div>
-
-                    </li>
-
-                    <li class="skills-item">
-
-                        <div class="title-wrapper">
-                            <h5 class="h5">JIRA, Agile</h5>
-                            <data value="90">90%</data>
-                        </div>
-
-                        <div class="skill-progress-bg">
-                            <div class="skill-progress-fill" style="width: 90%;"></div>
-                        </div>
-
-                    </li>
-
-                    <li class="skills-item">
-
-                        <div class="title-wrapper">
-                            <h5 class="h5">Uzbek</h5>
-                            <data value="100">100%</data>
-                        </div>
-
-                        <div class="skill-progress-bg">
-                            <div class="skill-progress-fill" style="width: 100%;"></div>
-                        </div>
-
-                    </li>
-
-                    <li class="skills-item">
-
-                        <div class="title-wrapper">
-                            <h5 class="h5">English</h5>
-                            <data value="70">70%</data>
-                        </div>
-                        <div class="skill-progress-bg">
-                            <div class="skill-progress-fill" style="width: 70%;"></div>
-                        </div>
-
-                    </li>
-
+                <ul class="skills-list content-card" id="skills-list">
+                    <li class="loading-message">Loading skills...</li>
                 </ul>
 
             </section>
@@ -498,7 +237,7 @@
         <article class="portfolio" data-page="portfolio">
 
             <header>
-                <h2 class="h2 article-title">Portfolio</h2>
+                <h2 class="h2 article-title" data-i18n="portfolio.title">Portfolio</h2>
             </header>
 
             <section class="projects">
@@ -523,17 +262,17 @@
             <ion-icon name="close-outline"></ion-icon>
         </button>
         
-        <h3 class="platform-modal-title">Select Platform</h3>
-        <p class="platform-modal-text">This app is available on both platforms. Choose where to view it:</p>
+        <h3 class="platform-modal-title" data-i18n="platformModal.title">Select Platform</h3>
+        <p class="platform-modal-text" data-i18n="platformModal.description">This app is available on both platforms. Choose where to view it:</p>
         
         <div class="platform-buttons">
             <a href="#" class="platform-btn ios-btn" data-ios-btn>
                 <ion-icon name="logo-apple"></ion-icon>
-                <span>iOS App Store</span>
+                <span data-i18n="platformModal.ios">iOS App Store</span>
             </a>
             <a href="#" class="platform-btn android-btn" data-android-btn>
                 <ion-icon name="logo-google-playstore"></ion-icon>
-                <span>Google Play Store</span>
+                <span data-i18n="platformModal.android">Google Play Store</span>
             </a>
         </div>
     </section>

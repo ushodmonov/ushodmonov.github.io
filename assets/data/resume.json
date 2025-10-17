@@ -1,0 +1,96 @@
+{
+  "experiences": [
+    {
+      "company": "Unicon Soft",
+      "period": "2022 — Present",
+      "position": {
+        "en": "Software Engineer | Mobile App Development",
+        "uz": "Dastur muhandisi | Mobil ilovalar ishlab chiqish",
+        "ru": "Инженер-программист | Разработка мобильных приложений"
+      },
+      "description": {
+        "en": "An electronic document circulation system that provides control of executive discipline. The system consists of functions that automate the processes of document circulation and the control of the execution of tasks, and at the same time, several employees work on the document.",
+        "uz": "Ijro intizomini nazorat qilishni ta'minlaydigan elektron hujjat aylanma tizimi. Tizim hujjat aylanma jarayonlarini va topshiriqlar bajarilishini nazorat qilish jarayonlarini avtomatlashtirish funksiyalaridan iborat, bir vaqtning o'zida bir nechta xodimlar hujjat ustida ishlaydi.",
+        "ru": "Система электронного документооборота, обеспечивающая контроль исполнительской дисциплины. Система состоит из функций, которые автоматизируют процессы документооборота и контроля выполнения задач, при этом несколько сотрудников работают над документом одновременно."
+      }
+    },
+    {
+      "company": "Viento",
+      "period": "2021 — 2022",
+      "position": {
+        "en": "Flutter Developer",
+        "uz": "Flutter dasturchisi",
+        "ru": "Flutter разработчик"
+      },
+      "description": {
+        "en": "Worked with the team of 10+ members and provided end-to-end solutions. Designed and developed more than 5 mobile apps live on Play Store.",
+        "uz": "10+ a'zodan iborat jamoa bilan ishlash va to'liq yechimlarni taqdim etish. Play Store'da jonli 5 dan ortiq mobil ilovalarni loyihalash va ishlab chiqish.",
+        "ru": "Работал с командой из 10+ человек и предоставлял комплексные решения. Спроектировал и разработал более 5 мобильных приложений, доступных в Play Store."
+      }
+    },
+    {
+      "company": "Prosofen",
+      "period": "2020 — 2021",
+      "position": {
+        "en": "Mobile Developer",
+        "uz": "Mobil dasturchi",
+        "ru": "Мобильный разработчик"
+      },
+      "description": {
+        "en": "Worked with team of 5+ members and provided end-to-end solutions for clients. Designed and developed more than 2 mobile apps live on Play Store",
+        "uz": "5+ a'zodan iborat jamoa bilan ishlash va mijozlar uchun to'liq yechimlarni taqdim etish. Play Store'da jonli 2 dan ortiq mobil ilovalarni loyihalash va ishlab chiqish.",
+        "ru": "Работал с командой из 5+ человек и предоставлял комплексные решения для клиентов. Спроектировал и разработал более 2 мобильных приложений в Play Store."
+      }
+    }
+  ],
+  "education": [
+    {
+      "institution": {
+        "en": "Tashkent University of Information Technologies named after Muhammad ibn Musa al-Khwarizmi(TUIT)",
+        "uz": "Muhammad ibn Muso al-Xorazmiy nomidagi Toshkent Axborot Texnologiyalari Universiteti(TATU)",
+        "ru": "Ташкентский университет информационных технологий имени Мухаммада ибн Мусы аль-Хорезми(ТУИТ)"
+      },
+      "period": "2018 — 2022",
+      "degree": {
+        "en": "Software Engineering",
+        "uz": "Dasturiy ta'minot muhandisligi",
+        "ru": "Программная инженерия"
+      }
+    }
+  ],
+  "skills": [
+    {
+      "name": "Flutter & Dart",
+      "percentage": 90
+    },
+    {
+      "name": "Android Development",
+      "percentage": 70
+    },
+    {
+      "name": "Java, Kotlin & Swift",
+      "percentage": 60
+    },
+    {
+      "name": "Database(SQLite)",
+      "percentage": 70
+    },
+    {
+      "name": "JIRA, Agile",
+      "percentage": 90
+    },
+    {
+      "name": "Uzbek",
+      "percentage": 100
+    },
+    {
+      "name": "English(Intermediate)",
+      "percentage": 60
+    },
+    {
+      "name": "Russian(Basic)",
+      "percentage": 30
+    }
+  ]
+}
+

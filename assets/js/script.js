@@ -7,6 +7,104 @@ const elementToggleFunc = function (elem) { elem.classList.toggle("active"); }
 
 
 
+// Language Management
+let currentLanguage = localStorage.getItem("language") || "en";
+let translations = {};
+
+// Load translation file
+async function loadTranslations(lang) {
+  try {
+    const response = await fetch(`./assets/data/translations/${lang}.json`);
+    translations = await response.json();
+    return translations;
+  } catch (error) {
+    console.error(`Error loading translations for ${lang}:`, error);
+    // Fallback to English if language file fails to load
+    if (lang !== 'en') {
+      return await loadTranslations('en');
+    }
+    return {};
+  }
+}
+
+// Apply translations to all elements with data-i18n attribute
+function applyTranslations() {
+  document.querySelectorAll('[data-i18n]').forEach(element => {
+    const key = element.getAttribute('data-i18n');
+    const translation = getNestedTranslation(translations, key);
+    if (translation) {
+      element.textContent = translation;
+    }
+  });
+}
+
+// Get nested translation value (e.g., "nav.about" -> translations.nav.about)
+function getNestedTranslation(obj, path) {
+  return path.split('.').reduce((current, key) => current?.[key], obj);
+}
+
+// Get value in current language (for multilingual content)
+function getLocalizedValue(value) {
+  if (typeof value === 'object' && value !== null && !Array.isArray(value)) {
+    return value[currentLanguage] || value['en'] || '';
+  }
+  return value;
+}
+
+// Change language
+async function changeLanguage(lang) {
+  currentLanguage = lang;
+  localStorage.setItem("language", lang);
+  
+  // Load translations
+  await loadTranslations(lang);
+  
+  // Apply translations to static elements
+  applyTranslations();
+  
+  // Update language buttons
+  document.querySelectorAll('.language-btn').forEach(btn => {
+    btn.classList.remove('active');
+    if (btn.getAttribute('data-lang') === lang) {
+      btn.classList.add('active');
+    }
+  });
+  
+  // Reload dynamic content with new language
+  await loadProfileData();
+  await loadResumeData();
+  
+  // Update sidebar button text
+  updateSidebarButtonText();
+}
+
+// Update sidebar show/hide contacts button text
+function updateSidebarButtonText() {
+  const sidebarBtn = document.querySelector("[data-sidebar-btn] span");
+  const sidebar = document.querySelector("[data-sidebar]");
+  
+  if (sidebarBtn) {
+    if (sidebar.classList.contains("active")) {
+      sidebarBtn.setAttribute('data-i18n', 'sidebar.hideContacts');
+    } else {
+      sidebarBtn.setAttribute('data-i18n', 'sidebar.showContacts');
+    }
+    applyTranslations();
+  }
+}
+
+// Initialize language switcher
+function initLanguageSwitcher() {
+  const languageButtons = document.querySelectorAll('.language-btn');
+  
+  languageButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const lang = btn.getAttribute('data-lang');
+      changeLanguage(lang);
+    });
+  });
+}
+
 // Theme toggle functionality
 const themeToggleBtn = document.querySelector("[data-theme-toggle]");
 const sunIcon = document.querySelector(".sun-icon");
@@ -95,12 +193,280 @@ async function loadProjects() {
   } catch (error) {
     console.error('Error loading projects:', error);
     const projectList = document.getElementById('project-list');
-    projectList.innerHTML = '<li class="error-message">Failed to load projects. Please refresh the page.</li>';
+    const errorMsg = translations.errors?.loadProjects || 'Failed to load projects. Please refresh the page.';
+    projectList.innerHTML = `<li class="error-message">${errorMsg}</li>`;
   }
 }
 
-// Call loadProjects when DOM is ready
-document.addEventListener('DOMContentLoaded', loadProjects);
+// Load and render resume data (experiences, education, skills) from JSON
+async function loadResumeData() {
+  try {
+    const response = await fetch('./assets/data/resume.json');
+    const resumeData = await response.json();
+    
+    // Load Experiences (use localized content)
+    const experienceList = document.getElementById('experience-list');
+    experienceList.innerHTML = '';
+    
+    resumeData.experiences.forEach(experience => {
+      const li = document.createElement('li');
+      li.className = 'timeline-item';
+      
+      const position = getLocalizedValue(experience.position);
+      const description = getLocalizedValue(experience.description);
+      const positionText = position ? ` | ${position}` : '';
+      
+      li.innerHTML = `
+        <h4 class="h4 timeline-item-title">${experience.company}</h4>
+        <span>${experience.period}${positionText}</span>
+        <p class="timeline-text">${description}</p>
+      `;
+      
+      experienceList.appendChild(li);
+    });
+    
+    // Load Education (use localized content)
+    const educationList = document.getElementById('education-list');
+    educationList.innerHTML = '';
+    
+    resumeData.education.forEach(edu => {
+      const li = document.createElement('li');
+      li.className = 'timeline-item';
+      
+      const institution = getLocalizedValue(edu.institution);
+      const degree = getLocalizedValue(edu.degree);
+      
+      li.innerHTML = `
+        <h4 class="h4 timeline-item-title">${institution}</h4>
+        <span>${edu.period}</span>
+        <p class="timeline-text">${degree}</p>
+      `;
+      
+      educationList.appendChild(li);
+    });
+    
+    // Load Skills
+    const skillsList = document.getElementById('skills-list');
+    skillsList.innerHTML = '';
+    
+    resumeData.skills.forEach(skill => {
+      const li = document.createElement('li');
+      li.className = 'skills-item';
+      
+      li.innerHTML = `
+        <div class="title-wrapper">
+          <h5 class="h5">${skill.name}</h5>
+          <data value="${skill.percentage}">${skill.percentage}%</data>
+        </div>
+        <div class="skill-progress-bg">
+          <div class="skill-progress-fill" style="width: ${skill.percentage}%;"></div>
+        </div>
+      `;
+      
+      skillsList.appendChild(li);
+    });
+    
+  } catch (error) {
+    console.error('Error loading resume data:', error);
+    
+    // Show error messages in each section
+    const experienceList = document.getElementById('experience-list');
+    const educationList = document.getElementById('education-list');
+    const skillsList = document.getElementById('skills-list');
+    
+    if (experienceList) {
+      experienceList.innerHTML = '<li class="error-message">Failed to load experiences.</li>';
+    }
+    if (educationList) {
+      educationList.innerHTML = '<li class="error-message">Failed to load education.</li>';
+    }
+    if (skillsList) {
+      skillsList.innerHTML = '<li class="error-message">Failed to load skills.</li>';
+    }
+  }
+}
+
+// Load and render profile data (personal info, contacts, about, services) from JSON
+async function loadProfileData() {
+  try {
+    const response = await fetch('./assets/data/profile.json');
+    const profileData = await response.json();
+    
+    // Load Personal Info (use localized content)
+    const profileName = document.getElementById('profile-name');
+    const profileTitle = document.getElementById('profile-title');
+    const profileAvatar = document.getElementById('profile-avatar');
+    
+    const name = getLocalizedValue(profileData.personal.name);
+    const title = getLocalizedValue(profileData.personal.title);
+    
+    if (profileName) {
+      profileName.textContent = name;
+      profileName.title = name;
+    }
+    if (profileTitle) {
+      profileTitle.textContent = title;
+    }
+    if (profileAvatar) {
+      profileAvatar.src = profileData.personal.avatar;
+      profileAvatar.alt = name;
+    }
+    
+    // Load Contact Information
+    const contactsList = document.getElementById('contacts-list');
+    if (contactsList) {
+      contactsList.innerHTML = '';
+      
+      // Email
+      const emailLi = document.createElement('li');
+      emailLi.className = 'contact-item';
+      emailLi.innerHTML = `
+        <div class="icon-box">
+          <ion-icon name="mail-outline"></ion-icon>
+        </div>
+        <div class="contact-info">
+          <p class="contact-title">Email</p>
+          <a href="mailto:${profileData.contact.email}" class="contact-link">${profileData.contact.email}</a>
+        </div>
+      `;
+      contactsList.appendChild(emailLi);
+      
+      // Phone
+      const phoneLi = document.createElement('li');
+      phoneLi.className = 'contact-item';
+      phoneLi.innerHTML = `
+        <div class="icon-box">
+          <ion-icon name="phone-portrait-outline"></ion-icon>
+        </div>
+        <div class="contact-info">
+          <p class="contact-title">Phone</p>
+          <a href="tel:${profileData.contact.phone}" class="contact-link">${profileData.contact.phoneDisplay}</a>
+        </div>
+      `;
+      contactsList.appendChild(phoneLi);
+      
+      // Location
+      const locationLi = document.createElement('li');
+      locationLi.className = 'contact-item';
+      const location = getLocalizedValue(profileData.contact.location);
+      locationLi.innerHTML = `
+        <div class="icon-box">
+          <ion-icon name="location-outline"></ion-icon>
+        </div>
+        <div class="contact-info">
+          <p class="contact-title">Location</p>
+          <address>${location}</address>
+        </div>
+      `;
+      contactsList.appendChild(locationLi);
+    }
+    
+    // Load Social Links
+    const socialList = document.getElementById('social-list');
+    if (socialList) {
+      socialList.innerHTML = '';
+      
+      profileData.social.forEach(social => {
+        const li = document.createElement('li');
+        li.className = 'social-item';
+        li.innerHTML = `
+          <a href="${social.url}" class="social-link" target="_blank" rel="noopener noreferrer">
+            <ion-icon name="${social.icon}"></ion-icon>
+          </a>
+        `;
+        socialList.appendChild(li);
+      });
+    }
+    
+    // Load About Section (use localized content from profile.json)
+    const aboutSection = document.getElementById('about-section');
+    if (aboutSection) {
+      const introduction = getLocalizedValue(profileData.about.introduction);
+      const highlights = getLocalizedValue(profileData.about.highlights);
+      
+      aboutSection.innerHTML = `
+        <p>${introduction}</p>
+        <ul>
+          ${highlights.map(highlight => `<li>${highlight}</li>`).join('')}
+        </ul>
+      `;
+    }
+    
+    // Load Services (use localized content from profile.json)
+    const servicesList = document.getElementById('services-list');
+    if (servicesList) {
+      servicesList.innerHTML = '';
+      
+      profileData.services.forEach(service => {
+        const li = document.createElement('li');
+        li.className = 'service-item';
+        const title = getLocalizedValue(service.title);
+        const description = getLocalizedValue(service.description);
+        
+        li.innerHTML = `
+          <div class="service-icon-box">
+            <img src="${service.icon}" alt="${title} icon" width="40">
+          </div>
+          <div class="service-content-box">
+            <h4 class="h4 service-item-title">${title}</h4>
+            <p class="service-item-text">${description}</p>
+          </div>
+        `;
+        servicesList.appendChild(li);
+      });
+    }
+    
+    // Apply contact titles translations
+    if (translations.sidebar) {
+      const contactTitles = document.querySelectorAll('.contact-title');
+      if (contactTitles.length >= 3) {
+        contactTitles[0].textContent = translations.sidebar.contactTitles.email;
+        contactTitles[1].textContent = translations.sidebar.contactTitles.phone;
+        contactTitles[2].textContent = translations.sidebar.contactTitles.location;
+      }
+    }
+    
+  } catch (error) {
+    console.error('Error loading profile data:', error);
+    
+    // Show error messages
+    const profileName = document.getElementById('profile-name');
+    const aboutSection = document.getElementById('about-section');
+    
+    if (profileName) {
+      profileName.textContent = 'Error loading profile';
+    }
+    if (aboutSection) {
+      aboutSection.innerHTML = '<p class="error-message">Failed to load profile information.</p>';
+    }
+  }
+}
+
+// Call all load functions when DOM is ready
+document.addEventListener('DOMContentLoaded', async () => {
+  // Initialize language first
+  await loadTranslations(currentLanguage);
+  
+  // Set active language button
+  document.querySelectorAll('.language-btn').forEach(btn => {
+    if (btn.getAttribute('data-lang') === currentLanguage) {
+      btn.classList.add('active');
+    } else {
+      btn.classList.remove('active');
+    }
+  });
+  
+  // Initialize language switcher
+  initLanguageSwitcher();
+  
+  // Apply initial translations
+  applyTranslations();
+  
+  // Load all data
+  await loadProfileData();
+  await loadProjects();
+  await loadResumeData();
+});
 
 
 
@@ -109,7 +475,13 @@ const sidebar = document.querySelector("[data-sidebar]");
 const sidebarBtn = document.querySelector("[data-sidebar-btn]");
 
 // sidebar toggle functionality for mobile
-sidebarBtn.addEventListener("click", function () { elementToggleFunc(sidebar); });
+sidebarBtn.addEventListener("click", function () { 
+  elementToggleFunc(sidebar);
+  // Update button text after toggle
+  setTimeout(() => {
+    updateSidebarButtonText();
+  }, 10);
+});
 
 
 
