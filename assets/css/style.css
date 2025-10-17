@@ -102,6 +102,63 @@
 
 }
 
+/*-----------------------------------*\
+  #LIGHT THEME
+\*-----------------------------------*/
+
+body.light-mode {
+  
+  /* gradient */
+  
+  --bg-gradient-onyx: linear-gradient(
+    to bottom right,
+    hsl(0, 0%, 90%) 3%,
+    hsl(0, 0%, 95%) 97%
+  );
+  --bg-gradient-jet: linear-gradient(
+    to bottom right,
+    hsla(0, 0%, 93%, 0.251) 0%,
+    hsla(0, 0%, 100%, 0) 100%
+  ), hsl(0, 0%, 98%);
+  --bg-gradient-yellow-1: linear-gradient(
+    to bottom right,
+    hsl(45, 100%, 71%) 0%,
+    hsla(36, 100%, 69%, 0) 50%
+  );
+  --bg-gradient-yellow-2: linear-gradient(
+    135deg,
+    hsla(45, 100%, 71%, 0.251) 0%,
+    hsla(35, 100%, 68%, 0) 59.86%
+  ), hsl(0, 0%, 98%);
+  --border-gradient-onyx: linear-gradient(
+    to bottom right,
+    hsl(0, 0%, 85%) 0%,
+    hsla(0, 0%, 85%, 0) 50%
+  );
+  
+  /* solid */
+  
+  --jet: hsl(0, 0%, 85%);
+  --onyx: hsl(0, 0%, 95%);
+  --eerie-black-1: hsl(0, 0%, 98%);
+  --eerie-black-2: hsl(0, 0%, 100%);
+  --smoky-black: hsl(0, 0%, 98%);
+  --white-1: hsl(0, 0%, 10%);
+  --white-2: hsl(0, 0%, 15%);
+  --orange-yellow-crayola: hsl(45, 100%, 55%);
+  --vegas-gold: hsl(45, 54%, 45%);
+  --light-gray: hsl(0, 0%, 35%);
+  --light-gray-70: hsla(0, 0%, 35%, 0.7);
+  
+  /* shadow */
+  
+  --shadow-1: -4px 8px 24px hsla(0, 0%, 0%, 0.1);
+  --shadow-2: 0 16px 30px hsla(0, 0%, 0%, 0.1);
+  --shadow-3: 0 16px 40px hsla(0, 0%, 0%, 0.1);
+  --shadow-4: 0 25px 50px hsla(0, 0%, 0%, 0.08);
+  --shadow-5: 0 24px 80px hsla(0, 0%, 0%, 0.1);
+}
+
 
 
 
@@ -146,7 +203,10 @@ input, textarea {
 
 html { font-family: var(--ff-poppins); }
 
-body { background: var(--smoky-black); }
+body { 
+  background: var(--smoky-black);
+  transition: background 0.3s ease, color 0.3s ease;
+}
 
 
 
@@ -442,6 +502,53 @@ main {
 
 
 /*-----------------------------------*\
+  #THEME TOGGLE
+\*-----------------------------------*/
+
+.theme-toggle-btn {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: var(--border-gradient-onyx);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  color: var(--orange-yellow-crayola);
+  box-shadow: var(--shadow-2);
+  transition: var(--transition-1);
+  z-index: 10;
+  cursor: pointer;
+}
+
+.theme-toggle-btn::before {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  background: var(--bg-gradient-jet);
+  border-radius: inherit;
+  transition: var(--transition-1);
+  z-index: -1;
+}
+
+.theme-toggle-btn:hover {
+  background: var(--bg-gradient-yellow-1);
+  transform: scale(1.1);
+}
+
+.theme-toggle-btn:hover::before {
+  background: var(--bg-gradient-yellow-2);
+}
+
+.theme-toggle-btn ion-icon {
+  --ionicon-stroke-width: 50px;
+}
+
+
+/*-----------------------------------*\
   #NAVBAR
 \*-----------------------------------*/
 
@@ -456,6 +563,10 @@ main {
   border-radius: 12px 12px 0 0;
   box-shadow: var(--shadow-2);
   z-index: 5;
+}
+
+body.light-mode .navbar {
+  background: hsla(0, 0%, 100%, 0.75);
 }
 
 .navbar-list {
@@ -1317,6 +1428,17 @@ textarea.form-input::-webkit-resizer { display: none; }
 @media (min-width: 450px) {
 
   /**
+   * THEME TOGGLE
+   */
+
+  .theme-toggle-btn {
+    width: 52px;
+    height: 52px;
+    font-size: 26px;
+  }
+
+
+  /**
    * client
    */
 
@@ -1747,6 +1869,19 @@ textarea.form-input::-webkit-resizer { display: none; }
   }
 
 
+  /**
+   * THEME TOGGLE
+   */
+
+  .theme-toggle-btn {
+    top: 30px;
+    right: 30px;
+    width: 56px;
+    height: 56px;
+    font-size: 28px;
+  }
+
+
 
   /**
    * REUSED STYLE
@@ -1853,6 +1988,8 @@ textarea.form-input::-webkit-resizer { display: none; }
 
   body::-webkit-scrollbar-track { background: var(--smoky-black); }
 
+  body.light-mode::-webkit-scrollbar-track { background: var(--smoky-black); }
+
   body::-webkit-scrollbar-thumb {
     border: 5px solid var(--smoky-black);
     background: hsla(0, 0%, 100%, 0.1);
@@ -1864,6 +2001,16 @@ textarea.form-input::-webkit-resizer { display: none; }
   body::-webkit-scrollbar-thumb:hover { background: hsla(0, 0%, 100%, 0.15); }
 
   body::-webkit-scrollbar-button { height: 60px; }
+
+
+  /**
+   * THEME TOGGLE
+   */
+
+  .theme-toggle-btn {
+    top: 60px;
+    right: calc(50% - 600px + 30px);
+  }
 
 
 

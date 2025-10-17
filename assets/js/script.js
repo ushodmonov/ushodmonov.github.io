@@ -7,6 +7,42 @@ const elementToggleFunc = function (elem) { elem.classList.toggle("active"); }
 
 
 
+// Theme toggle functionality
+const themeToggleBtn = document.querySelector("[data-theme-toggle]");
+const sunIcon = document.querySelector(".sun-icon");
+const moonIcon = document.querySelector(".moon-icon");
+
+// Check for saved theme preference or default to dark mode
+const currentTheme = localStorage.getItem("theme") || "dark";
+
+// Apply theme on page load
+if (currentTheme === "light") {
+  document.body.classList.add("light-mode");
+  sunIcon.style.display = "none";
+  moonIcon.style.display = "block";
+}
+
+// Theme toggle function
+const toggleTheme = function() {
+  document.body.classList.toggle("light-mode");
+  
+  // Toggle icons
+  if (document.body.classList.contains("light-mode")) {
+    sunIcon.style.display = "none";
+    moonIcon.style.display = "block";
+    localStorage.setItem("theme", "light");
+  } else {
+    sunIcon.style.display = "block";
+    moonIcon.style.display = "none";
+    localStorage.setItem("theme", "dark");
+  }
+}
+
+// Add event listener to theme toggle button
+themeToggleBtn.addEventListener("click", toggleTheme);
+
+
+
 // Load and render projects from JSON
 async function loadProjects() {
   try {
