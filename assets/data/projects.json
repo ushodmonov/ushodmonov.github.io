@@ -90,6 +90,13 @@
     "image": "./assets/images/business_arbuz.png",
     "iosUrl": "https://apps.apple.com/uz/app/business-arbuz/id6743079552",
     "androidUrl": "https://play.google.com/store/apps/details?id=uz.arb.business"
+  },
+  {
+    "id": 13,
+    "title": "Metanchi",
+    "image": "./assets/images/metanchi.png",
+    "iosUrl": null,
+    "androidUrl": "https://play.google.com/store/apps/details?id=uz.metanchi.mobile"
   }
 ]
 
