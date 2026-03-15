@@ -1,5 +1,4 @@
 [
-  
   {
     "id": 1,
     "title": "IJRO.GOV.UZ",
@@ -92,11 +91,17 @@
     "androidUrl": "https://play.google.com/store/apps/details?id=uz.arb.business"
   },
   {
-    "id": 13,
+    "id": 14,
     "title": "Metanchi",
     "image": "./assets/images/metanchi.png",
-    "iosUrl": null,
+    "iosUrl": "https://apps.apple.com/us/app/metanchi/id6759526612",
     "androidUrl": "https://play.google.com/store/apps/details?id=uz.metanchi.mobile"
+  },
+  {
+    "id": 15,
+    "title": "E-huquqshunos",
+    "image": "./assets/images/lawyer.png",
+    "iosUrl": "https://apps.apple.com/us/app/e-huquqshunos/id6760208316",
+    "androidUrl": "https://play.google.com/store/apps/details?id=uz.uniconsoft.ehuquqshunos"
   }
 ]
-
