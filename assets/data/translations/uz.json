@@ -1,8 +1,17 @@
 {
   "nav": {
     "about": "Men haqimda",
+    "work": "Loyihalar",
     "resume": "Rezyume",
+    "contact": "Aloqa",
     "portfolio": "Portfolio"
+  },
+  "hero": {
+    "greeting": "Salom, men",
+    "available": "Yangi loyihalar uchun ochiqman",
+    "viewWork": "Loyihalarimni ko'rish",
+    "getInTouch": "Bog'lanish",
+    "basedIn": "Yashash joyi"
   },
   "sidebar": {
     "showContacts": "Kontaktlarni ko'rsatish",
@@ -15,16 +24,28 @@
   },
   "about": {
     "title": "Men haqimda",
+    "subtitle": "O'zim haqimda qisqacha",
     "servicesTitle": "Men nima qilaman"
   },
   "resume": {
     "title": "Rezyume",
     "experienceTitle": "Tajriba",
     "educationTitle": "Ta'lim",
-    "skillsTitle": "Mening ko'nikmalarim"
+    "skillsTitle": "Ko'nikmalar"
   },
   "portfolio": {
-    "title": "Portfolio"
+    "title": "Tanlangan loyihalar",
+    "subtitle": "App Store va Google Play'da chiqqan ilovalarim",
+    "viewOn": "Ko'rish"
+  },
+  "contact": {
+    "title": "Bog'lanish",
+    "subtitle": "Loyihangiz bormi? Gaplashaylik.",
+    "emailMe": "Email yuborish"
+  },
+  "footer": {
+    "rights": "Barcha huquqlar himoyalangan",
+    "builtWith": "Mehnat bilan ishlangan"
   },
   "loading": {
     "projects": "Loyihalar yuklanmoqda...",
@@ -49,4 +70,3 @@
     "android": "Google Play Store"
   }
 }
-

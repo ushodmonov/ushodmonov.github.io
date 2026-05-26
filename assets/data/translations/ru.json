@@ -1,8 +1,17 @@
 {
   "nav": {
     "about": "Обо мне",
+    "work": "Работы",
     "resume": "Резюме",
+    "contact": "Контакты",
     "portfolio": "Портфолио"
+  },
+  "hero": {
+    "greeting": "Привет, я",
+    "available": "Открыт для новых проектов",
+    "viewWork": "Посмотреть работы",
+    "getInTouch": "Связаться",
+    "basedIn": "Базируется в"
   },
   "sidebar": {
     "showContacts": "Показать контакты",
@@ -15,16 +24,28 @@
   },
   "about": {
     "title": "Обо мне",
+    "subtitle": "Немного о себе",
     "servicesTitle": "Чем я занимаюсь"
   },
   "resume": {
     "title": "Резюме",
     "experienceTitle": "Опыт работы",
     "educationTitle": "Образование",
-    "skillsTitle": "Мои навыки"
+    "skillsTitle": "Навыки"
   },
   "portfolio": {
-    "title": "Портфолио"
+    "title": "Избранные работы",
+    "subtitle": "Приложения в App Store и Google Play",
+    "viewOn": "Посмотреть в"
+  },
+  "contact": {
+    "title": "Связаться",
+    "subtitle": "Есть проект? Давайте обсудим.",
+    "emailMe": "Написать"
+  },
+  "footer": {
+    "rights": "Все права защищены",
+    "builtWith": "Сделано с заботой"
   },
   "loading": {
     "projects": "Загрузка проектов...",
@@ -49,4 +70,3 @@
     "android": "Google Play Store"
   }
 }
-

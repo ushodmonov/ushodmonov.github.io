@@ -1,672 +1,545 @@
 'use strict';
 
+/* ============================================================================
+   Uchkun Shodmonov — Portfolio
+   Modern Minimal · Light + Dark
+============================================================================ */
 
-
-// element toggle function
-const elementToggleFunc = function (elem) { elem.classList.toggle("active"); }
-
-
-
-// Language Management
-let currentLanguage = localStorage.getItem("language") || "en";
+/* -------------------- STATE -------------------- */
+let currentLanguage = localStorage.getItem('language') || 'en';
+let currentTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
 let translations = {};
 
-// Load translation file
+const SOCIAL_ICONS = {
+  'logo-github': '<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .3a12 12 0 0 0-3.8 23.38c.6.12.83-.26.83-.57v-2c-3.34.72-4.04-1.61-4.04-1.61-.55-1.4-1.34-1.77-1.34-1.77-1.08-.74.09-.73.09-.73 1.2.08 1.83 1.24 1.83 1.24 1.07 1.83 2.8 1.3 3.48 1 .11-.78.42-1.3.76-1.6-2.66-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.66 1.66.24 2.88.12 3.18a4.65 4.65 0 0 1 1.23 3.22c0 4.61-2.81 5.63-5.48 5.92.42.36.81 1.1.81 2.22v3.29c0 .31.21.69.83.57A12 12 0 0 0 12 .3"/></svg>',
+  'logo-linkedin': '<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.86-3.04-1.86 0-2.14 1.45-2.14 2.95v5.66H9.36V9h3.41v1.56h.05a3.74 3.74 0 0 1 3.37-1.85c3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zm1.78 13.02H3.56V9h3.55v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0z"/></svg>',
+  'send': '<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>',
+  'mail-outline': '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>',
+};
+
+/* -------------------- I18N -------------------- */
 async function loadTranslations(lang) {
   try {
     const response = await fetch(`./assets/data/translations/${lang}.json`);
     translations = await response.json();
     return translations;
-  } catch (error) {
-    console.error(`Error loading translations for ${lang}:`, error);
-    // Fallback to English if language file fails to load
-    if (lang !== 'en') {
-      return await loadTranslations('en');
-    }
+  } catch (e) {
+    console.error('Translation load failed:', e);
+    if (lang !== 'en') return loadTranslations('en');
     return {};
   }
 }
 
-// Apply translations to all elements with data-i18n attribute
-function applyTranslations() {
-  document.querySelectorAll('[data-i18n]').forEach(element => {
-    const key = element.getAttribute('data-i18n');
-    const translation = getNestedTranslation(translations, key);
-    if (translation) {
-      element.textContent = translation;
-    }
-  });
+function getNested(obj, path) {
+  return path.split('.').reduce((cur, key) => cur?.[key], obj);
 }
 
-// Get nested translation value (e.g., "nav.about" -> translations.nav.about)
-function getNestedTranslation(obj, path) {
-  return path.split('.').reduce((current, key) => current?.[key], obj);
-}
-
-// Get value in current language (for multilingual content)
-function getLocalizedValue(value) {
-  if (typeof value === 'object' && value !== null && !Array.isArray(value)) {
-    return value[currentLanguage] || value['en'] || '';
+function getLocalized(value) {
+  if (value && typeof value === 'object' && !Array.isArray(value)) {
+    return value[currentLanguage] || value.en || '';
   }
   return value;
 }
 
-// Change language
+function applyTranslations() {
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    const t = getNested(translations, key);
+    if (t) el.textContent = t;
+  });
+}
+
 async function changeLanguage(lang) {
   currentLanguage = lang;
-  localStorage.setItem("language", lang);
-  
-  // Load translations
+  localStorage.setItem('language', lang);
+  document.documentElement.setAttribute('lang', lang);
+
   await loadTranslations(lang);
-  
-  // Apply translations to static elements
   applyTranslations();
-  
-  // Update language dropdown
-  const currentLangSpan = document.querySelector('[data-current-lang]');
-  if (currentLangSpan) {
-    currentLangSpan.textContent = lang.toUpperCase();
-  }
-  
-  document.querySelectorAll('.language-option').forEach(option => {
-    option.classList.remove('active');
-    if (option.getAttribute('data-lang') === lang) {
-      option.classList.add('active');
-    }
+
+  document.querySelectorAll('[data-current-lang]').forEach(el => el.textContent = lang.toUpperCase());
+  document.querySelectorAll('.language-option').forEach(opt => {
+    opt.classList.toggle('active', opt.getAttribute('data-lang') === lang);
   });
-  
-  // Reload dynamic content with new language
+
   await loadProfileData();
   await loadResumeData();
-  
-  // Update sidebar button text
-  updateSidebarButtonText();
 }
 
-// Update sidebar show/hide contacts button text
-function updateSidebarButtonText() {
-  const sidebarBtn = document.querySelector("[data-sidebar-btn] span");
-  const sidebar = document.querySelector("[data-sidebar]");
-  
-  if (sidebarBtn) {
-    if (sidebar.classList.contains("active")) {
-      sidebarBtn.setAttribute('data-i18n', 'sidebar.hideContacts');
-    } else {
-      sidebarBtn.setAttribute('data-i18n', 'sidebar.showContacts');
-    }
-    applyTranslations();
-  }
-}
-
-// Initialize language dropdown
 function initLanguageSwitcher() {
   const dropdown = document.querySelector('[data-language-dropdown]');
   const currentBtn = document.querySelector('[data-language-current]');
-  const currentLangSpan = document.querySelector('[data-current-lang]');
-  const languageOptions = document.querySelectorAll('.language-option');
-  
-  // Toggle dropdown
+  if (!dropdown || !currentBtn) return;
+
   currentBtn.addEventListener('click', (e) => {
     e.stopPropagation();
     dropdown.classList.toggle('active');
+    currentBtn.setAttribute('aria-expanded', dropdown.classList.contains('active'));
   });
-  
-  // Close dropdown when clicking outside
+
   document.addEventListener('click', (e) => {
-    if (!dropdown.contains(e.target)) {
-      dropdown.classList.remove('active');
-    }
+    if (!dropdown.contains(e.target)) dropdown.classList.remove('active');
   });
-  
-  // Handle language selection
-  languageOptions.forEach(option => {
+
+  document.querySelectorAll('.language-option').forEach(option => {
     option.addEventListener('click', () => {
       const lang = option.getAttribute('data-lang');
-      const langText = option.textContent.trim();
-      
-      // Update current language display
-      currentLangSpan.textContent = lang.toUpperCase();
-      
-      // Update active state
-      languageOptions.forEach(opt => opt.classList.remove('active'));
-      option.classList.add('active');
-      
-      // Close dropdown
       dropdown.classList.remove('active');
-      
-      // Change language
       changeLanguage(lang);
     });
   });
 }
 
-// Theme toggle functionality
-const themeToggleBtn = document.querySelector("[data-theme-toggle]");
-const sunIcon = document.querySelector(".sun-icon");
-const moonIcon = document.querySelector(".moon-icon");
-
-// Check for saved theme preference or default to dark mode
-const currentTheme = localStorage.getItem("theme") || "dark";
-
-// Apply theme on page load
-if (currentTheme === "light") {
-  document.body.classList.add("light-mode");
-  sunIcon.style.display = "none";
-  moonIcon.style.display = "block";
+/* -------------------- THEME -------------------- */
+function applyTheme(theme) {
+  document.documentElement.setAttribute('data-theme', theme);
+  const meta = document.querySelector('meta[name="theme-color"]');
+  if (meta) meta.setAttribute('content', theme === 'dark' ? '#0a0a0a' : '#ffffff');
 }
 
-// Theme toggle function
-const toggleTheme = function() {
-  document.body.classList.toggle("light-mode");
-  
-  // Toggle icons
-  if (document.body.classList.contains("light-mode")) {
-    sunIcon.style.display = "none";
-    moonIcon.style.display = "block";
-    localStorage.setItem("theme", "light");
-  } else {
-    sunIcon.style.display = "block";
-    moonIcon.style.display = "none";
-    localStorage.setItem("theme", "dark");
+function initTheme() {
+  applyTheme(currentTheme);
+
+  const toggleBtn = document.querySelector('[data-theme-toggle]');
+  if (!toggleBtn) return;
+
+  toggleBtn.addEventListener('click', () => {
+    currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    localStorage.setItem('theme', currentTheme);
+    applyTheme(currentTheme);
+  });
+}
+
+/* -------------------- HEADER / NAV -------------------- */
+function initHeader() {
+  const header = document.querySelector('[data-header]');
+  const mobileToggle = document.querySelector('[data-mobile-menu-toggle]');
+  const mobileNav = document.querySelector('[data-mobile-nav]');
+
+  // Scrolled border state
+  const onScroll = () => {
+    if (header) header.classList.toggle('scrolled', window.scrollY > 8);
+    // Progress
+    const progress = document.querySelector('[data-scroll-progress]');
+    if (progress) {
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = docHeight > 0 ? (window.scrollY / docHeight) * 100 : 0;
+      progress.style.width = pct + '%';
+    }
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // Mobile menu
+  if (mobileToggle && mobileNav) {
+    mobileToggle.addEventListener('click', () => {
+      mobileToggle.classList.toggle('active');
+      mobileNav.classList.toggle('active');
+    });
+    mobileNav.querySelectorAll('.mobile-nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileToggle.classList.remove('active');
+        mobileNav.classList.remove('active');
+      });
+    });
+  }
+
+  // Active section highlight via IntersectionObserver
+  const navLinks = document.querySelectorAll('[data-nav-link]');
+  const sections = document.querySelectorAll('[data-section]');
+  if (sections.length && navLinks.length && 'IntersectionObserver' in window) {
+    const setActive = (id) => {
+      navLinks.forEach(l => {
+        const target = l.getAttribute('href')?.replace('#', '');
+        l.classList.toggle('active', target === id);
+      });
+    };
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) setActive(entry.target.id);
+      });
+    }, { rootMargin: '-50% 0px -50% 0px', threshold: 0 });
+    sections.forEach(s => observer.observe(s));
   }
 }
 
-// Add event listener to theme toggle button
-themeToggleBtn.addEventListener("click", toggleTheme);
-
-
-
-// Load and render projects from JSON
-async function loadProjects() {
-  try {
-    const response = await fetch('./assets/data/projects.json');
-    const projects = await response.json();
-    
-    const projectList = document.getElementById('project-list');
-    
-    // Clear loading message
-    projectList.innerHTML = '';
-    
-    projects.forEach(project => {
-      const category = (project.iosUrl && project.androidUrl) ? 'all' : 
-                       (project.iosUrl ? 'ios' : 'android');
-      
-      const platformText = (project.iosUrl && project.androidUrl) ? 'iOS | Android' :
-                          (project.iosUrl ? 'iOS' : 'Android');
-      
-      const li = document.createElement('li');
-      li.className = 'project-item';
-      li.setAttribute('data-filter-item', '');
-      li.setAttribute('data-category', category);
-      
-      if (project.iosUrl) {
-        li.setAttribute('data-ios-url', project.iosUrl);
+/* -------------------- REVEAL ANIMATIONS -------------------- */
+function initReveal() {
+  const elements = document.querySelectorAll('[data-reveal]');
+  if (!elements.length || !('IntersectionObserver' in window)) {
+    elements.forEach(el => el.classList.add('in-view'));
+    return;
+  }
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+        observer.unobserve(entry.target);
       }
-      if (project.androidUrl) {
-        li.setAttribute('data-android-url', project.androidUrl);
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  elements.forEach(el => observer.observe(el));
+}
+
+function observeReveal(nodes) {
+  if (!('IntersectionObserver' in window)) {
+    nodes.forEach(n => n.classList.add('in-view'));
+    return;
+  }
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+        observer.unobserve(entry.target);
       }
-      
-      li.innerHTML = `
-        <a href="#" class="project-link">
-          <figure class="project-img">
-            <div class="project-item-icon-box">
-              <ion-icon name="eye-outline"></ion-icon>
-            </div>
-            <img src="${project.image}" alt="${project.title}" loading="lazy">
-          </figure>
-          <h3 class="project-title">${project.title}</h3>
-          <p class="project-category">${platformText}</p>
-        </a>
-      `;
-      
-      projectList.appendChild(li);
     });
-    
-    // Initialize platform modal after projects are loaded
-    initPlatformModal();
-    
-  } catch (error) {
-    console.error('Error loading projects:', error);
-    const projectList = document.getElementById('project-list');
-    const errorMsg = translations.errors?.loadProjects || 'Failed to load projects. Please refresh the page.';
-    projectList.innerHTML = `<li class="error-message">${errorMsg}</li>`;
-  }
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  nodes.forEach(n => observer.observe(n));
 }
 
-// Load and render resume data (experiences, education, skills) from JSON
-async function loadResumeData() {
-  try {
-    const response = await fetch('./assets/data/resume.json');
-    const resumeData = await response.json();
-    
-    // Load Experiences (use localized content)
-    const experienceList = document.getElementById('experience-list');
-    experienceList.innerHTML = '';
-    
-    resumeData.experiences.forEach(experience => {
-      const li = document.createElement('li');
-      li.className = 'timeline-item';
-      
-      const position = getLocalizedValue(experience.position);
-      const description = getLocalizedValue(experience.description);
-      const positionText = position ? ` | ${position}` : '';
-      
-      li.innerHTML = `
-        <h4 class="h4 timeline-item-title">${experience.company}</h4>
-        <span>${experience.period}${positionText}</span>
-        <p class="timeline-text">${description}</p>
-      `;
-      
-      experienceList.appendChild(li);
-    });
-    
-    // Load Education (use localized content)
-    const educationList = document.getElementById('education-list');
-    educationList.innerHTML = '';
-    
-    resumeData.education.forEach(edu => {
-      const li = document.createElement('li');
-      li.className = 'timeline-item';
-      
-      const institution = getLocalizedValue(edu.institution);
-      const degree = getLocalizedValue(edu.degree);
-      
-      li.innerHTML = `
-        <h4 class="h4 timeline-item-title">${institution}</h4>
-        <span>${edu.period}</span>
-        <p class="timeline-text">${degree}</p>
-      `;
-      
-      educationList.appendChild(li);
-    });
-    
-    // Load Skills
-    const skillsList = document.getElementById('skills-list');
-    skillsList.innerHTML = '';
-    
-    resumeData.skills.forEach(skill => {
-      const li = document.createElement('li');
-      li.className = 'skills-item';
-      
-      li.innerHTML = `
-        <div class="title-wrapper">
-          <h5 class="h5">${skill.name}</h5>
-          <data value="${skill.percentage}">${skill.percentage}%</data>
-        </div>
-        <div class="skill-progress-bg">
-          <div class="skill-progress-fill" style="width: ${skill.percentage}%;"></div>
-        </div>
-      `;
-      
-      skillsList.appendChild(li);
-    });
-    
-  } catch (error) {
-    console.error('Error loading resume data:', error);
-    
-    // Show error messages in each section
-    const experienceList = document.getElementById('experience-list');
-    const educationList = document.getElementById('education-list');
-    const skillsList = document.getElementById('skills-list');
-    
-    if (experienceList) {
-      experienceList.innerHTML = '<li class="error-message">Failed to load experiences.</li>';
-    }
-    if (educationList) {
-      educationList.innerHTML = '<li class="error-message">Failed to load education.</li>';
-    }
-    if (skillsList) {
-      skillsList.innerHTML = '<li class="error-message">Failed to load skills.</li>';
-    }
-  }
-}
-
-// Load and render profile data (personal info, contacts, about, services) from JSON
+/* -------------------- DATA LOADERS -------------------- */
 async function loadProfileData() {
   try {
     const response = await fetch('./assets/data/profile.json');
-    const profileData = await response.json();
-    
-    // Load Personal Info (use localized content)
-    const profileName = document.getElementById('profile-name');
-    const profileTitle = document.getElementById('profile-title');
-    const profileAvatar = document.getElementById('profile-avatar');
-    
-    const name = getLocalizedValue(profileData.personal.name);
-    const title = getLocalizedValue(profileData.personal.title);
-    
-    if (profileName) {
-      profileName.textContent = name;
-      profileName.title = name;
+    const data = await response.json();
+
+    const name = getLocalized(data.personal.name);
+    const title = getLocalized(data.personal.title);
+    const location = getLocalized(data.contact.location);
+    const intro = getLocalized(data.about.introduction);
+    const highlights = getLocalized(data.about.highlights);
+
+    // Hero
+    setText('hero-name', name);
+    setText('hero-tagline', intro);
+    setText('hero-location', location);
+    setText('hero-role', title);
+
+    // About lead
+    setText('about-intro', intro);
+
+    // About card
+    setText('profile-name', name);
+    setText('profile-title', title);
+    const avatar = document.getElementById('profile-avatar');
+    if (avatar) {
+      avatar.src = data.personal.avatar;
+      avatar.alt = name;
     }
-    if (profileTitle) {
-      profileTitle.textContent = title;
+
+    // About highlights
+    const highlightsList = document.getElementById('about-highlights');
+    if (highlightsList && Array.isArray(highlights)) {
+      highlightsList.innerHTML = highlights.map(h => `<li>${escapeHtml(h)}</li>`).join('');
     }
-    if (profileAvatar) {
-      profileAvatar.src = profileData.personal.avatar;
-      profileAvatar.alt = name;
-    }
-    
-    // Load Contact Information
-    const contactsList = document.getElementById('contacts-list');
-    if (contactsList) {
-      contactsList.innerHTML = '';
-      
-      // Email
-      const emailLi = document.createElement('li');
-      emailLi.className = 'contact-item';
-      emailLi.innerHTML = `
-        <div class="icon-box">
-          <ion-icon name="mail-outline"></ion-icon>
-        </div>
-        <div class="contact-info">
-          <p class="contact-title">Email</p>
-          <a href="mailto:${profileData.contact.email}" class="contact-link">${profileData.contact.email}</a>
-        </div>
-      `;
-      contactsList.appendChild(emailLi);
-      
-      // Phone
-      const phoneLi = document.createElement('li');
-      phoneLi.className = 'contact-item';
-      phoneLi.innerHTML = `
-        <div class="icon-box">
-          <ion-icon name="phone-portrait-outline"></ion-icon>
-        </div>
-        <div class="contact-info">
-          <p class="contact-title">Phone</p>
-          <a href="tel:${profileData.contact.phone}" class="contact-link">${profileData.contact.phoneDisplay}</a>
-        </div>
-      `;
-      contactsList.appendChild(phoneLi);
-      
-      // Location
-      const locationLi = document.createElement('li');
-      locationLi.className = 'contact-item';
-      const location = getLocalizedValue(profileData.contact.location);
-      locationLi.innerHTML = `
-        <div class="icon-box">
-          <ion-icon name="location-outline"></ion-icon>
-        </div>
-        <div class="contact-info">
-          <p class="contact-title">Location</p>
-          <address>${location}</address>
-        </div>
-      `;
-      contactsList.appendChild(locationLi);
-    }
-    
-    // Load Social Links
-    const socialList = document.getElementById('social-list');
-    if (socialList) {
-      socialList.innerHTML = '';
-      
-      profileData.social.forEach(social => {
-        const li = document.createElement('li');
-        li.className = 'social-item';
-        li.innerHTML = `
-          <a href="${social.url}" class="social-link" target="_blank" rel="noopener noreferrer">
-            <ion-icon name="${social.icon}"></ion-icon>
-          </a>
-        `;
-        socialList.appendChild(li);
-      });
-    }
-    
-    // Load About Section (use localized content from profile.json)
-    const aboutSection = document.getElementById('about-section');
-    if (aboutSection) {
-      const introduction = getLocalizedValue(profileData.about.introduction);
-      const highlights = getLocalizedValue(profileData.about.highlights);
-      
-      aboutSection.innerHTML = `
-        <p>${introduction}</p>
-        <ul>
-          ${highlights.map(highlight => `<li>${highlight}</li>`).join('')}
-        </ul>
-      `;
-    }
-    
-    // Load Services (use localized content from profile.json)
+
+    // Services
     const servicesList = document.getElementById('services-list');
     if (servicesList) {
       servicesList.innerHTML = '';
-      
-      profileData.services.forEach(service => {
+      data.services.forEach(service => {
         const li = document.createElement('li');
         li.className = 'service-item';
-        const title = getLocalizedValue(service.title);
-        const description = getLocalizedValue(service.description);
-        
+        const sTitle = getLocalized(service.title);
+        const sDesc = getLocalized(service.description);
         li.innerHTML = `
           <div class="service-icon-box">
-            <img src="${service.icon}" alt="${title} icon" width="40">
+            <img src="${service.icon}" alt="" width="24" height="24">
           </div>
           <div class="service-content-box">
-            <h4 class="h4 service-item-title">${title}</h4>
-            <p class="service-item-text">${description}</p>
+            <h4 class="service-item-title">${escapeHtml(sTitle)}</h4>
+            <p class="service-item-text">${escapeHtml(sDesc)}</p>
           </div>
         `;
         servicesList.appendChild(li);
       });
     }
-    
-    // Apply contact titles translations
-    if (translations.sidebar) {
-      const contactTitles = document.querySelectorAll('.contact-title');
-      if (contactTitles.length >= 3) {
-        contactTitles[0].textContent = translations.sidebar.contactTitles.email;
-        contactTitles[1].textContent = translations.sidebar.contactTitles.phone;
-        contactTitles[2].textContent = translations.sidebar.contactTitles.location;
-      }
+
+    // Hero socials
+    const heroSocials = document.getElementById('hero-socials');
+    if (heroSocials) {
+      heroSocials.innerHTML = data.social.map(s => `
+        <a href="${s.url}" class="hero-social" aria-label="${s.platform}" target="_blank" rel="noopener noreferrer">
+          ${SOCIAL_ICONS[s.icon] || ''}
+        </a>
+      `).join('');
     }
-    
-  } catch (error) {
-    console.error('Error loading profile data:', error);
-    
-    // Show error messages
-    const profileName = document.getElementById('profile-name');
-    const aboutSection = document.getElementById('about-section');
-    
-    if (profileName) {
-      profileName.textContent = 'Error loading profile';
+
+    // Contact section
+    const contactEmail = document.getElementById('contact-email');
+    const contactEmailValue = document.getElementById('contact-email-value');
+    if (contactEmail && contactEmailValue) {
+      contactEmail.href = `mailto:${data.contact.email}`;
+      contactEmailValue.textContent = data.contact.email;
     }
-    if (aboutSection) {
-      aboutSection.innerHTML = '<p class="error-message">Failed to load profile information.</p>';
+
+    const contactGrid = document.getElementById('contact-grid');
+    if (contactGrid) {
+      const labels = translations.sidebar?.contactTitles || { email: 'Email', phone: 'Phone', location: 'Location' };
+      contactGrid.innerHTML = `
+        <div class="contact-info-item">
+          <p class="contact-info-label">${escapeHtml(labels.phone)}</p>
+          <a href="tel:${data.contact.phone}" class="contact-info-value">${escapeHtml(data.contact.phoneDisplay)}</a>
+        </div>
+        <div class="contact-info-item">
+          <p class="contact-info-label">${escapeHtml(labels.location)}</p>
+          <p class="contact-info-value">${escapeHtml(location)}</p>
+        </div>
+      `;
     }
+
+    const contactSocials = document.getElementById('contact-socials');
+    if (contactSocials) {
+      contactSocials.innerHTML = data.social.map(s => `
+        <a href="${s.url}" class="contact-social" aria-label="${s.platform}" target="_blank" rel="noopener noreferrer">
+          ${SOCIAL_ICONS[s.icon] || ''}
+        </a>
+      `).join('');
+    }
+
+  } catch (e) {
+    console.error('Profile load failed:', e);
   }
 }
 
-// Call all load functions when DOM is ready
-document.addEventListener('DOMContentLoaded', async () => {
-  // Initialize language first
-  await loadTranslations(currentLanguage);
-  
-  // Set active language in dropdown
-  const currentLangSpan = document.querySelector('[data-current-lang]');
-  if (currentLangSpan) {
-    currentLangSpan.textContent = currentLanguage.toUpperCase();
+async function loadResumeData() {
+  try {
+    const response = await fetch('./assets/data/resume.json');
+    const data = await response.json();
+
+    // Experience
+    const expList = document.getElementById('experience-list');
+    if (expList) {
+      expList.innerHTML = '';
+      data.experiences.forEach(exp => {
+        const li = document.createElement('li');
+        li.className = 'timeline-item reveal';
+        const position = getLocalized(exp.position);
+        const description = getLocalized(exp.description);
+        li.innerHTML = `
+          <div class="timeline-period">${escapeHtml(exp.period)}</div>
+          <div class="timeline-content">
+            <h4 class="timeline-title">${escapeHtml(exp.company)}</h4>
+            ${position ? `<p class="timeline-role">${escapeHtml(position)}</p>` : ''}
+            ${description ? `<p class="timeline-description">${escapeHtml(description)}</p>` : ''}
+          </div>
+        `;
+        expList.appendChild(li);
+      });
+      observeReveal(expList.querySelectorAll('.reveal'));
+    }
+
+    // Education
+    const eduList = document.getElementById('education-list');
+    if (eduList) {
+      eduList.innerHTML = '';
+      data.education.forEach(edu => {
+        const li = document.createElement('li');
+        li.className = 'timeline-item reveal';
+        const institution = getLocalized(edu.institution);
+        const degree = getLocalized(edu.degree);
+        li.innerHTML = `
+          <div class="timeline-period">${escapeHtml(edu.period)}</div>
+          <div class="timeline-content">
+            <h4 class="timeline-title">${escapeHtml(institution)}</h4>
+            ${degree ? `<p class="timeline-role">${escapeHtml(degree)}</p>` : ''}
+          </div>
+        `;
+        eduList.appendChild(li);
+      });
+      observeReveal(eduList.querySelectorAll('.reveal'));
+    }
+
+    // Skills
+    const skillsList = document.getElementById('skills-list');
+    if (skillsList) {
+      skillsList.innerHTML = '';
+      data.skills.forEach(skill => {
+        const li = document.createElement('li');
+        li.className = 'skill-item';
+        li.innerHTML = `
+          <div class="skill-header">
+            <span class="skill-name">${escapeHtml(skill.name)}</span>
+            <span class="skill-percentage">${skill.percentage}%</span>
+          </div>
+          <div class="skill-bar">
+            <div class="skill-fill" data-skill-fill="${skill.percentage}"></div>
+          </div>
+        `;
+        skillsList.appendChild(li);
+      });
+      animateSkillBars();
+    }
+
+  } catch (e) {
+    console.error('Resume load failed:', e);
   }
-  
-  document.querySelectorAll('.language-option').forEach(option => {
-    if (option.getAttribute('data-lang') === currentLanguage) {
-      option.classList.add('active');
-    } else {
-      option.classList.remove('active');
-    }
-  });
-  
-  // Initialize language switcher
-  initLanguageSwitcher();
-  
-  // Apply initial translations
-  applyTranslations();
-  
-  // Load all data
-  await loadProfileData();
-  await loadProjects();
-  await loadResumeData();
-});
-
-
-
-// sidebar variables
-const sidebar = document.querySelector("[data-sidebar]");
-const sidebarBtn = document.querySelector("[data-sidebar-btn]");
-
-// sidebar toggle functionality for mobile
-sidebarBtn.addEventListener("click", function () { 
-  elementToggleFunc(sidebar);
-  // Update button text after toggle
-  setTimeout(() => {
-    updateSidebarButtonText();
-  }, 10);
-});
-
-
-
-// testimonials variables
-const testimonialsItem = document.querySelectorAll("[data-testimonials-item]");
-const modalContainer = document.querySelector("[data-modal-container]");
-const modalCloseBtn = document.querySelector("[data-modal-close-btn]");
-const overlay = document.querySelector("[data-overlay]");
-
-// modal variable
-const modalImg = document.querySelector("[data-modal-img]");
-const modalTitle = document.querySelector("[data-modal-title]");
-const modalText = document.querySelector("[data-modal-text]");
-
-// modal toggle function
-const testimonialsModalFunc = function () {
-  modalContainer.classList.toggle("active");
-  overlay.classList.toggle("active");
 }
 
-// add click event to all modal items
-for (let i = 0; i < testimonialsItem.length; i++) {
-
-  testimonialsItem[i].addEventListener("click", function () {
-
-    modalImg.src = this.querySelector("[data-testimonials-avatar]").src;
-    modalImg.alt = this.querySelector("[data-testimonials-avatar]").alt;
-    modalTitle.innerHTML = this.querySelector("[data-testimonials-title]").innerHTML;
-    modalText.innerHTML = this.querySelector("[data-testimonials-text]").innerHTML;
-
-    testimonialsModalFunc();
-
-  });
-
-}
-
-// add click event to modal close button
-modalCloseBtn.addEventListener("click", testimonialsModalFunc);
-overlay.addEventListener("click", testimonialsModalFunc);
-
-
-
-// Filter functionality removed - all projects are now always visible
-
-
-
-// contact form variables
-const form = document.querySelector("[data-form]");
-const formInputs = document.querySelectorAll("[data-form-input]");
-const formBtn = document.querySelector("[data-form-btn]");
-
-// add event to all form input field
-for (let i = 0; i < formInputs.length; i++) {
-  formInputs[i].addEventListener("input", function () {
-
-    // check form validation
-    if (form.checkValidity()) {
-      formBtn.removeAttribute("disabled");
-    } else {
-      formBtn.setAttribute("disabled", "");
-    }
-
-  });
-}
-
-
-
-// page navigation variables
-const navigationLinks = document.querySelectorAll("[data-nav-link]");
-const pages = document.querySelectorAll("[data-page]");
-
-// add event to all nav link
-for (let i = 0; i < navigationLinks.length; i++) {
-  navigationLinks[i].addEventListener("click", function () {
-    const targetPage = this.getAttribute('data-page-nav');
-
-    for (let j = 0; j < pages.length; j++) {
-      if (targetPage === pages[j].dataset.page) {
-        pages[j].classList.add("active");
-        navigationLinks[j].classList.add("active");
-        window.scrollTo(0, 0);
-      } else {
-        pages[j].classList.remove("active");
-        navigationLinks[j].classList.remove("active");
-      }
-    }
-
-  });
-}
-
-
-
-// Platform selector modal functionality
-function initPlatformModal() {
-  const platformModalContainer = document.querySelector("[data-platform-modal-container]");
-  const platformOverlay = document.querySelector("[data-platform-overlay]");
-  const platformModalCloseBtn = document.querySelector("[data-platform-modal-close-btn]");
-  const iosBtn = document.querySelector("[data-ios-btn]");
-  const androidBtn = document.querySelector("[data-android-btn]");
-  const projectLinks = document.querySelectorAll(".project-link");
-
-  // toggle platform modal
-  const platformModalFunc = function () {
-    platformModalContainer.classList.toggle("active");
-    platformOverlay.classList.toggle("active");
+function animateSkillBars() {
+  const fills = document.querySelectorAll('[data-skill-fill]');
+  if (!('IntersectionObserver' in window)) {
+    fills.forEach(f => { f.style.width = f.getAttribute('data-skill-fill') + '%'; });
+    return;
   }
-
-  // add click event to all project links
-  for (let i = 0; i < projectLinks.length; i++) {
-    projectLinks[i].addEventListener("click", function (e) {
-      e.preventDefault();
-      
-      const projectItem = this.closest('.project-item');
-      const iosUrl = projectItem.dataset.iosUrl;
-      const androidUrl = projectItem.dataset.androidUrl;
-      
-      // If both URLs exist, show modal
-      if (iosUrl && androidUrl) {
-        iosBtn.href = iosUrl;
-        androidBtn.href = androidUrl;
-        platformModalFunc();
-      } else if (iosUrl) {
-        // Only iOS available
-        window.open(iosUrl, '_blank');
-      } else if (androidUrl) {
-        // Only Android available
-        window.open(androidUrl, '_blank');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const pct = entry.target.getAttribute('data-skill-fill');
+        entry.target.style.width = pct + '%';
+        observer.unobserve(entry.target);
       }
     });
+  }, { threshold: 0.3 });
+  fills.forEach(f => observer.observe(f));
+}
+
+async function loadProjects() {
+  try {
+    const response = await fetch('./assets/data/projects.json');
+    const projects = await response.json();
+    const list = document.getElementById('project-list');
+    if (!list) return;
+
+    list.innerHTML = '';
+
+    projects.forEach((project, idx) => {
+      const platformText = (project.iosUrl && project.androidUrl) ? 'iOS · Android' :
+                           (project.iosUrl ? 'iOS' : 'Android');
+
+      const li = document.createElement('li');
+      li.className = 'project-item reveal';
+      if (project.iosUrl) li.setAttribute('data-ios-url', project.iosUrl);
+      if (project.androidUrl) li.setAttribute('data-android-url', project.androidUrl);
+
+      li.innerHTML = `
+        <a href="#" class="project-link" aria-label="${escapeHtml(project.title)}">
+          <figure class="project-img">
+            <div class="project-item-icon-box">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+            </div>
+            <img src="${project.image}" alt="${escapeHtml(project.title)}" loading="lazy">
+          </figure>
+          <div class="project-content">
+            <h3 class="project-title">${escapeHtml(project.title)}</h3>
+            <p class="project-category">${platformText}</p>
+          </div>
+        </a>
+      `;
+      list.appendChild(li);
+    });
+
+    observeReveal(list.querySelectorAll('.reveal'));
+    initPlatformModal();
+
+  } catch (e) {
+    console.error('Projects load failed:', e);
+    const list = document.getElementById('project-list');
+    if (list) {
+      const msg = translations.errors?.loadProjects || 'Failed to load projects.';
+      list.innerHTML = `<li class="error-message">${msg}</li>`;
+    }
   }
+}
 
-  // Close modal events
-  platformModalCloseBtn.addEventListener("click", platformModalFunc);
-  platformOverlay.addEventListener("click", platformModalFunc);
+/* -------------------- PLATFORM MODAL -------------------- */
+function initPlatformModal() {
+  const container = document.querySelector('[data-platform-modal-container]');
+  const overlay = document.querySelector('[data-platform-overlay]');
+  const closeBtn = document.querySelector('[data-platform-modal-close-btn]');
+  const iosBtn = document.querySelector('[data-ios-btn]');
+  const androidBtn = document.querySelector('[data-android-btn]');
+  const projectLinks = document.querySelectorAll('.project-link');
 
-  // Open links in new tab when platform button is clicked
-  iosBtn.addEventListener("click", function(e) {
-    e.preventDefault();
-    window.open(this.href, '_blank');
-    platformModalFunc();
+  if (!container) return;
+
+  const toggle = () => {
+    container.classList.toggle('active');
+    document.body.style.overflow = container.classList.contains('active') ? 'hidden' : '';
+  };
+
+  projectLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const item = link.closest('.project-item');
+      const ios = item?.dataset.iosUrl;
+      const android = item?.dataset.androidUrl;
+
+      if (ios && android) {
+        iosBtn.href = ios;
+        androidBtn.href = android;
+        toggle();
+      } else if (ios) {
+        window.open(ios, '_blank');
+      } else if (android) {
+        window.open(android, '_blank');
+      }
+    });
   });
 
-  androidBtn.addEventListener("click", function(e) {
+  closeBtn?.addEventListener('click', toggle);
+  overlay?.addEventListener('click', toggle);
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && container.classList.contains('active')) toggle();
+  });
+
+  iosBtn?.addEventListener('click', (e) => {
     e.preventDefault();
-    window.open(this.href, '_blank');
-    platformModalFunc();
+    window.open(iosBtn.href, '_blank');
+    toggle();
+  });
+  androidBtn?.addEventListener('click', (e) => {
+    e.preventDefault();
+    window.open(androidBtn.href, '_blank');
+    toggle();
   });
 }
+
+/* -------------------- HELPERS -------------------- */
+function setText(id, text) {
+  const el = document.getElementById(id);
+  if (el) el.textContent = text;
+}
+
+function escapeHtml(str) {
+  if (str == null) return '';
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+/* -------------------- INIT -------------------- */
+document.addEventListener('DOMContentLoaded', async () => {
+  // Theme first to avoid flash
+  initTheme();
+
+  // Footer year
+  const yearEl = document.getElementById('footer-year');
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+  // Translations
+  await loadTranslations(currentLanguage);
+  document.documentElement.setAttribute('lang', currentLanguage);
+
+  document.querySelectorAll('[data-current-lang]').forEach(el => el.textContent = currentLanguage.toUpperCase());
+  document.querySelectorAll('.language-option').forEach(opt => {
+    opt.classList.toggle('active', opt.getAttribute('data-lang') === currentLanguage);
+  });
+
+  applyTranslations();
+
+  // Init UI
+  initLanguageSwitcher();
+  initHeader();
+  initReveal();
+
+  // Load data
+  await Promise.all([
+    loadProfileData(),
+    loadProjects(),
+    loadResumeData(),
+  ]);
+});

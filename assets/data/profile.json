@@ -6,9 +6,9 @@
       "ru": "Учкун Шодмонов"
     },
     "title": {
-      "en": "Software Engineer",
-      "uz": "Software Engineer",
-      "ru": "Инженер-программист"
+      "en": "Senior Mobile Engineer",
+      "uz": "Senior Mobile Engineer",
+      "ru": "Senior Mobile Engineer"
     },
     "avatar": "./assets/images/my-avatar.jpg"
   },
@@ -41,48 +41,73 @@
   ],
   "about": {
     "introduction": {
-      "en": "I'm a Mobile Software Engineer with about five year of experience in Mobile App Development. Building innovative Android and iOS apps with architecture design for easy upgrades and bug fixes.",
-      "uz": "Men Mobile App Development sohasida taxminan besh yillik tajribaga ega Mobile Software Engineerman. Android va iOS uchun oson yangilanish va xatolarni tuzatish uchun arxitektura dizayni bilan innovatsion ilovalar yarataman.",
-      "ru": "Я Mobile Software Engineer с примерно пятилетним опытом разработки мобильных приложений. Создаю инновационные приложения для Android и iOS с архитектурным дизайном для легкого обновления и исправления ошибок."
+      "en": "Senior Mobile Engineer with 5+ years of experience shipping production iOS and Android apps. I work with Flutter, Swift, and Kotlin to build digital products — from government services to consumer apps — with over 15 apps live on the App Store and Google Play.",
+      "uz": "5+ yillik tajribaga ega Senior Mobile Engineer — iOS va Android uchun production darajadagi ilovalar yarataman. Flutter, Swift va Kotlin bilan davlat xizmatlaridan iste'molchi mahsulotlarigacha ishlayman. App Store va Google Play'da 15+ ilovam mavjud.",
+      "ru": "Senior Mobile Engineer с опытом 5+ лет — создаю production-приложения для iOS и Android. Работаю с Flutter, Swift и Kotlin над цифровыми продуктами — от государственных сервисов до потребительских приложений. Более 15 приложений в App Store и Google Play."
     },
     "highlights": {
       "en": [
-        "🤯 Developing for Flutter since 2020.",
-        "💻 Currently working on very cool projects.",
-        "🌱 I'm currently working on Unicon Soft.",
-        "✌🏻 Looking forward to collaborating with other developers.",
-        "📫 I'm available to answer your questions related to programming on any platform. Just connect me :)"
+        "🚀 Building with Flutter since 2020 — 15+ apps shipped to production",
+        "🏛️ Currently at Unicon Soft, crafting digital products used across Uzbekistan",
+        "📱 Cross-platform specialist: Flutter, native iOS (Swift), and Android (Kotlin)",
+        "🧠 Focused on clean architecture, performance, and great developer experience",
+        "💬 Open to collaboration and always happy to talk shop — reach out anywhere"
       ],
       "uz": [
-        "🤯 2020 yildan beri Flutter'da dastur ishlab chiqaman.",
-        "💻 Hozirda juda qiziqarli loyihalarda ishlamoqdaman.",
-        "🌱 Hozirda Unicon Soft'da ishlayman.",
-        "✌🏻 Boshqa dasturchilar bilan hamkorlik qilishni intiqlik bilan kutaman.",
-        "📫 Dasturlash bilan bog'liq savollaringizga har qanday platformada javob berishga tayyorman.\nFaqat bog'laning :)"
+        "🚀 2020-yildan beri Flutter bilan ishlayman — 15+ ilova productionda",
+        "🏛️ Hozirda Unicon Soft'da O'zbekiston bo'ylab foydalanilayotgan mahsulotlar ustida ishlayman",
+        "📱 Cross-platform mutaxassisi: Flutter, native iOS (Swift) va Android (Kotlin)",
+        "🧠 Toza arxitektura, ish unumdorligi va developer experience'ga e'tibor qarataman",
+        "💬 Hamkorlikka ochiqman, savol-javoblardan zerikmaymiz — istalgan joyda yozing"
       ],
       "ru": [
-        "🤯 Разрабатываю на Flutter с 2020 года.",
-        "💻 В настоящее время работаю над очень интересными проектами.",
-        "🌱 Сейчас работаю в Unicon Soft.",
-        "✌🏻 С нетерпением жду сотрудничества с другими разработчиками.",
-        "📫 Готов ответить на ваши вопросы, связанные с программированием, на любой платформе. Просто свяжитесь со мной :)"
+        "🚀 С Flutter работаю с 2020 года — 15+ приложений в production",
+        "🏛️ Сейчас в Unicon Soft создаю продукты, которыми пользуются по всему Узбекистану",
+        "📱 Cross-platform эксперт: Flutter, native iOS (Swift) и Android (Kotlin)",
+        "🧠 Уделяю внимание чистой архитектуре, производительности и developer experience",
+        "💬 Открыт к сотрудничеству и техническим разговорам — пишите в любом мессенджере"
       ]
     }
   },
   "services": [
     {
       "title": {
-        "en": "Mobile apps",
-        "uz": "Mobil ilovalar",
-        "ru": "Мобильные приложения"
+        "en": "Mobile App Development",
+        "uz": "Mobil ilovalar ishlab chiqish",
+        "ru": "Разработка мобильных приложений"
       },
       "description": {
-        "en": "Professional development of applications for iOS and Android with Flutter.",
-        "uz": "Flutter bilan iOS va Android uchun ilovalarni professional darajada ishlab chiqish.",
-        "ru": "Профессиональная разработка приложений для iOS и Android с помощью Flutter."
+        "en": "End-to-end iOS and Android apps with Flutter — from concept to App Store and Google Play release.",
+        "uz": "Flutter bilan iOS va Android uchun to'liq ilovalar — g'oyadan App Store va Google Play'gacha.",
+        "ru": "iOS и Android приложения на Flutter под ключ — от идеи до релиза в App Store и Google Play."
       },
       "icon": "./assets/images/icon-app.svg"
+    },
+    {
+      "title": {
+        "en": "Architecture & Code Review",
+        "uz": "Arxitektura va kod tahlili",
+        "ru": "Архитектура и код-ревью"
+      },
+      "description": {
+        "en": "Clean architecture, scalable state management, and code reviews that keep your app maintainable as it grows.",
+        "uz": "Toza arxitektura, kengayadigan state management va kodingizni o'sib borgan sayin barqaror tutib turuvchi tahlillar.",
+        "ru": "Чистая архитектура, масштабируемый state management и код-ревью, чтобы приложение оставалось поддерживаемым при росте."
+      },
+      "icon": "./assets/images/icon-architecture.svg"
+    },
+    {
+      "title": {
+        "en": "Performance & Quality",
+        "uz": "Ish unumdorligi va sifat",
+        "ru": "Производительность и качество"
+      },
+      "description": {
+        "en": "Profiling, optimization, and testing to make sure apps stay fast, stable, and pleasant on every device.",
+        "uz": "Profiling, optimallashtirish va testlash — ilova har qanday qurilmada tez, barqaror va yoqimli ishlashi uchun.",
+        "ru": "Профилирование, оптимизация и тестирование — чтобы приложение работало быстро, стабильно и приятно на любом устройстве."
+      },
+      "icon": "./assets/images/icon-performance.svg"
     }
   ]
 }
-

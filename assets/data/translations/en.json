@@ -1,8 +1,17 @@
 {
   "nav": {
     "about": "About",
+    "work": "Work",
     "resume": "Resume",
+    "contact": "Contact",
     "portfolio": "Portfolio"
+  },
+  "hero": {
+    "greeting": "Hello, I'm",
+    "available": "Available for new projects",
+    "viewWork": "View my work",
+    "getInTouch": "Get in touch",
+    "basedIn": "Based in"
   },
   "sidebar": {
     "showContacts": "Show Contacts",
@@ -14,17 +23,29 @@
     }
   },
   "about": {
-    "title": "About me",
-    "servicesTitle": "What i'm doing"
+    "title": "About",
+    "subtitle": "A little about me",
+    "servicesTitle": "What I do"
   },
   "resume": {
     "title": "Resume",
     "experienceTitle": "Experience",
     "educationTitle": "Education",
-    "skillsTitle": "My skills"
+    "skillsTitle": "Skills"
   },
   "portfolio": {
-    "title": "Portfolio"
+    "title": "Selected work",
+    "subtitle": "Apps I've shipped to App Store & Google Play",
+    "viewOn": "View on"
+  },
+  "contact": {
+    "title": "Get in touch",
+    "subtitle": "Have a project in mind? Let's talk.",
+    "emailMe": "Email me"
+  },
+  "footer": {
+    "rights": "All rights reserved",
+    "builtWith": "Designed & built with care"
   },
   "loading": {
     "projects": "Loading projects...",
@@ -49,4 +70,3 @@
     "android": "Google Play Store"
   }
 }
-

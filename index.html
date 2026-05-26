@@ -1,301 +1,261 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google-site-verification" content="jTkPxxLSdx6zRnCIPfhDZnehE8mBN-fKySxhh0GL2uY" />
-    
-    <title>Personal Portfolio</title>
+    <meta name="description" content="Uchkun Shodmonov — Software Engineer specializing in mobile app development with Flutter. Based in Tashkent, Uzbekistan.">
+    <meta name="theme-color" content="#ffffff">
 
-    <!--
-      - favicon
-    -->
+    <title>Uchkun Shodmonov — Software Engineer</title>
+
     <link rel="shortcut icon" href="./assets/images/logo.png" type="image/x-icon">
-
-    <!--
-      - custom css link
-    -->
     <link rel="stylesheet" href="./assets/css/style.css">
 
-
-    <!--
-      - google font link
-    -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
-<!-- Top Navigation Bar -->
-<div class="top-navbar">
-    <!-- Navigation Links -->
-    <nav class="navbar-inline">
-        <ul class="navbar-list-inline">
-            <li class="navbar-item-inline">
-                <button class="navbar-link-inline active" data-nav-link data-page-nav="about" data-i18n="nav.about">About</button>
-            </li>
-            <li class="navbar-item-inline">
-                <button class="navbar-link-inline" data-nav-link data-page-nav="resume" data-i18n="nav.resume">Resume</button>
-            </li>
-            <li class="navbar-item-inline">
-                <button class="navbar-link-inline" data-nav-link data-page-nav="portfolio" data-i18n="nav.portfolio">Portfolio</button>
-            </li>
-        </ul>
+<!-- Progress bar -->
+<div class="scroll-progress" data-scroll-progress></div>
+
+<!-- Top navigation -->
+<header class="site-header" data-header>
+    <div class="container header-inner">
+        <a href="#top" class="logo" aria-label="Home">
+            <span class="logo-mark">US</span>
+            <span class="logo-text">Uchkun Shodmonov</span>
+        </a>
+
+        <nav class="site-nav" aria-label="Primary">
+            <a href="#about" class="nav-link" data-nav-link data-i18n="nav.about">About</a>
+            <a href="#work" class="nav-link" data-nav-link data-i18n="nav.work">Work</a>
+            <a href="#resume" class="nav-link" data-nav-link data-i18n="nav.resume">Resume</a>
+            <a href="#contact" class="nav-link" data-nav-link data-i18n="nav.contact">Contact</a>
+        </nav>
+
+        <div class="header-controls">
+            <div class="language-dropdown" data-language-dropdown>
+                <button class="language-current" data-language-current aria-haspopup="listbox" aria-expanded="false">
+                    <span data-current-lang>EN</span>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                </button>
+                <div class="language-options" data-language-options role="listbox">
+                    <button class="language-option active" data-lang="en" role="option">English</button>
+                    <button class="language-option" data-lang="uz" role="option">O'zbek</button>
+                    <button class="language-option" data-lang="ru" role="option">Русский</button>
+                </div>
+            </div>
+
+            <button class="theme-toggle" data-theme-toggle aria-label="Toggle theme">
+                <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+                <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+            </button>
+
+            <button class="mobile-menu-toggle" data-mobile-menu-toggle aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Mobile menu -->
+    <nav class="mobile-nav" data-mobile-nav aria-label="Mobile">
+        <a href="#about" class="mobile-nav-link" data-i18n="nav.about">About</a>
+        <a href="#work" class="mobile-nav-link" data-i18n="nav.work">Work</a>
+        <a href="#resume" class="mobile-nav-link" data-i18n="nav.resume">Resume</a>
+        <a href="#contact" class="mobile-nav-link" data-i18n="nav.contact">Contact</a>
     </nav>
-    
-    <!-- Controls Container -->
-    <div class="controls-container">
-        <!-- Language Switcher Dropdown -->
-        <div class="language-dropdown" data-language-dropdown>
-            <button class="language-current" data-language-current>
-                <span data-current-lang>EN</span>
-                <ion-icon name="chevron-down-outline" class="dropdown-icon"></ion-icon>
-            </button>
-            <div class="language-options" data-language-options>
-                <button class="language-option active" data-lang="en">English</button>
-                <button class="language-option" data-lang="uz">O'zbek</button>
-                <button class="language-option" data-lang="ru">Русский</button>
-            </div>
-        </div>
-        
-        <!-- Theme Toggle Button -->
-        <button class="theme-toggle-btn" data-theme-toggle aria-label="Toggle theme">
-            <ion-icon name="sunny-outline" class="sun-icon"></ion-icon>
-            <ion-icon name="moon-outline" class="moon-icon" style="display: none;"></ion-icon>
-        </button>
-    </div>
-</div>
+</header>
 
-<!--
-  - #MAIN
--->
+<main id="top">
 
-<main>
-
-    <!--
-      - #SIDEBAR
-    -->
-
-    <aside class="sidebar" data-sidebar>
-
-        <div class="sidebar-info">
-
-            <figure class="avatar-box">
-                <img id="profile-avatar" src="./assets/images/my-avatar.jpg" alt="Loading..." width="80">
-            </figure>
-
-            <div class="info-content">
-                <h4 class="name" id="profile-name" title="">Loading...</h4>
-
-                <p class="title" id="profile-title">Loading...</p>
+    <!-- HERO -->
+    <section class="hero" data-section data-page="hero">
+        <div class="container">
+            <div class="hero-status reveal" data-reveal>
+                <span class="status-dot"></span>
+                <span data-i18n="hero.available">Available for new projects</span>
             </div>
 
-            <button class="info_more-btn" data-sidebar-btn>
-                <span data-i18n="sidebar.showContacts">Show Contacts</span>
+            <h1 class="hero-title reveal" data-reveal>
+                <span class="hero-greeting" data-i18n="hero.greeting">Hello, I'm</span>
+                <span class="hero-name" id="hero-name">Loading...</span>
+            </h1>
 
-                <ion-icon name="chevron-down"></ion-icon>
-            </button>
+            <p class="hero-tagline reveal" data-reveal id="hero-tagline">
+                Loading...
+            </p>
 
-        </div>
-
-        <div class="sidebar-info_more">
-
-            <div class="separator"></div>
-
-            <ul class="contacts-list" id="contacts-list">
-                <li class="loading-message">Loading contacts...</li>
-            </ul>
-
-            <div class="separator"></div>
-
-            <ul class="social-list" id="social-list">
-                <li class="loading-message">Loading social links...</li>
-            </ul>
-
-        </div>
-
-    </aside>
-
-
-    <!--
-      - #main-content
-    -->
-
-    <div class="main-content">
-
-        <!--
-          - #NAVBAR (moved to top)
-        -->
-
-        <!--
-          - #ABOUT
-        -->
-
-        <article class="about  active" data-page="about">
-
-            <header>
-                <h2 class="h2 article-title" data-i18n="about.title">About me</h2>
-            </header>
-
-            <section class="about-text" id="about-section">
-                <p>Loading...</p>
-            </section>
-
-            <!--
-              - service
-            -->
-
-            <section class="service">
-
-                <h3 class="h3 service-title" data-i18n="about.servicesTitle">What i'm doing</h3>
-
-                <ul class="service-list" id="services-list">
-                    <li class="loading-message">Loading services...</li>
-                </ul>
-
-            </section>
-
-            <div class="modal-container" data-modal-container>
-
-                <div class="overlay" data-overlay></div>
-
-                <section class="testimonials-modal">
-
-                    <button class="modal-close-btn" data-modal-close-btn>
-                        <ion-icon name="close-outline"></ion-icon>
-                    </button>
-
-                </section>
+            <div class="hero-meta reveal" data-reveal>
+                <div class="hero-meta-item">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                    <span id="hero-location">Tashkent, Uzbekistan</span>
+                </div>
+                <div class="hero-meta-item">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                    <span id="hero-role">Software Engineer</span>
+                </div>
             </div>
-<!-- 
-            <section class="about-text">
 
-                <h3 class="h3 service-title">Interests</h3>
+            <div class="hero-actions reveal" data-reveal>
+                <a href="#work" class="btn btn-primary">
+                    <span data-i18n="hero.viewWork">View my work</span>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </a>
+                <a href="#contact" class="btn btn-secondary" data-i18n="hero.getInTouch">Get in touch</a>
+            </div>
 
-                <p>
-                    "iOS-lite" developer :), Apart from being Mobile Software Engineer, I enjoy learn Islam. I like play table
-                    tennis.
-                </p>
-            </section> -->
-        </article>
+            <div class="hero-socials reveal" data-reveal id="hero-socials">
+                <!-- populated by JS -->
+            </div>
+        </div>
+    </section>
 
-        <!--
-          - #RESUME
-        -->
+    <!-- ABOUT -->
+    <section id="about" class="section" data-section data-page="about">
+        <div class="container">
+            <div class="section-head reveal" data-reveal>
+                <span class="section-eyebrow">01</span>
+                <h2 class="section-title" data-i18n="about.title">About</h2>
+            </div>
 
-        <article class="resume" data-page="resume">
-
-            <header>
-                <h2 class="h2 article-title" data-i18n="resume.title">Resume</h2>
-            </header>
-
-
-            <section class="timeline">
-
-                <div class="title-wrapper">
-                    <div class="icon-box">
-                        <ion-icon name="book-outline"></ion-icon>
-                    </div>
-
-                    <h3 class="h3" data-i18n="resume.experienceTitle">Experience</h3>
+            <div class="about-grid">
+                <div class="about-content reveal" data-reveal>
+                    <p class="about-lead" id="about-intro">Loading...</p>
+                    <ul class="about-highlights" id="about-highlights">
+                        <!-- populated by JS -->
+                    </ul>
                 </div>
 
-                <ol class="timeline-list" id="experience-list">
-                    <li class="loading-message">Loading experiences...</li>
-                </ol>
-
-            </section>
-            <section class="timeline">
-
-                <div class="title-wrapper">
-                    <div class="icon-box">
-                        <ion-icon name="book-outline"></ion-icon>
+                <aside class="about-card reveal" data-reveal>
+                    <figure class="avatar-wrap">
+                        <img id="profile-avatar" src="./assets/images/my-avatar.jpg" alt="Uchkun Shodmonov" loading="lazy">
+                    </figure>
+                    <div class="avatar-info">
+                        <p class="avatar-name" id="profile-name">Loading...</p>
+                        <p class="avatar-title" id="profile-title">Loading...</p>
                     </div>
+                </aside>
+            </div>
 
-                    <h3 class="h3" data-i18n="resume.educationTitle">Education</h3>
+            <!-- Services -->
+            <div class="services">
+                <h3 class="services-title reveal" data-reveal data-i18n="about.servicesTitle">What I do</h3>
+                <ul class="services-grid" id="services-list">
+                    <!-- populated by JS -->
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- WORK -->
+    <section id="work" class="section section-alt" data-section data-page="work">
+        <div class="container">
+            <div class="section-head reveal" data-reveal>
+                <span class="section-eyebrow">02</span>
+                <h2 class="section-title" data-i18n="portfolio.title">Selected work</h2>
+                <p class="section-subtitle" data-i18n="portfolio.subtitle">Apps I've shipped to App Store & Google Play</p>
+            </div>
+
+            <ul class="work-grid" id="project-list">
+                <!-- populated by JS -->
+            </ul>
+        </div>
+    </section>
+
+    <!-- RESUME -->
+    <section id="resume" class="section" data-section data-page="resume">
+        <div class="container">
+            <div class="section-head reveal" data-reveal>
+                <span class="section-eyebrow">03</span>
+                <h2 class="section-title" data-i18n="resume.title">Resume</h2>
+            </div>
+
+            <div class="resume-block reveal" data-reveal>
+                <h3 class="resume-subtitle" data-i18n="resume.experienceTitle">Experience</h3>
+                <ol class="timeline" id="experience-list"></ol>
+            </div>
+
+            <div class="resume-block reveal" data-reveal>
+                <h3 class="resume-subtitle" data-i18n="resume.educationTitle">Education</h3>
+                <ol class="timeline" id="education-list"></ol>
+            </div>
+
+            <div class="resume-block reveal" data-reveal>
+                <h3 class="resume-subtitle" data-i18n="resume.skillsTitle">Skills</h3>
+                <ul class="skills-grid" id="skills-list"></ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section section-alt" data-section data-page="contact">
+        <div class="container">
+            <div class="section-head reveal" data-reveal>
+                <span class="section-eyebrow">04</span>
+                <h2 class="section-title" data-i18n="contact.title">Get in touch</h2>
+                <p class="section-subtitle" data-i18n="contact.subtitle">Have a project in mind? Let's talk.</p>
+            </div>
+
+            <div class="contact-card reveal" data-reveal>
+                <a href="mailto:" class="contact-email" id="contact-email">
+                    <span class="contact-email-label" data-i18n="contact.emailMe">Email me</span>
+                    <span class="contact-email-value" id="contact-email-value">loading@...</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+                </a>
+
+                <div class="contact-grid" id="contact-grid">
+                    <!-- populated by JS -->
                 </div>
-                <ol class="timeline-list" id="education-list">
-                    <li class="loading-message">Loading education...</li>
-                </ol>
 
-            </section>
-            <section class="skill">
-
-                <h3 class="h3 skills-title" data-i18n="resume.skillsTitle">My skills</h3>
-
-                <ul class="skills-list content-card" id="skills-list">
-                    <li class="loading-message">Loading skills...</li>
-                </ul>
-
-            </section>
-
-        </article>
-
-
-        <!--
-          - #PORTFOLIO
-        -->
-
-        <article class="portfolio" data-page="portfolio">
-
-            <header>
-                <h2 class="h2 article-title" data-i18n="portfolio.title">Portfolio</h2>
-            </header>
-
-            <section class="projects">
-                <ul class="project-list" id="project-list">
-                    <li class="loading-message">Loading projects...</li>
-                </ul>
-            </section>
-
-        </article>
-
-
-    </div>
+                <div class="contact-socials" id="contact-socials">
+                    <!-- populated by JS -->
+                </div>
+            </div>
+        </div>
+    </section>
 
 </main>
 
-<!-- Platform Selector Modal -->
+<footer class="site-footer">
+    <div class="container footer-inner">
+        <p class="footer-text">
+            &copy; <span id="footer-year">2026</span> Uchkun Shodmonov · <span data-i18n="footer.rights">All rights reserved</span>
+        </p>
+        <p class="footer-credit" data-i18n="footer.builtWith">Designed & built with care</p>
+    </div>
+</footer>
+
+<!-- Platform selector modal -->
 <div class="platform-modal-container" data-platform-modal-container>
     <div class="platform-overlay" data-platform-overlay></div>
-    
-    <section class="platform-modal">
-        <button class="modal-close-btn" data-platform-modal-close-btn>
-            <ion-icon name="close-outline"></ion-icon>
+
+    <section class="platform-modal" role="dialog" aria-modal="true">
+        <button class="modal-close-btn" data-platform-modal-close-btn aria-label="Close">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
         </button>
-        
+
         <h3 class="platform-modal-title" data-i18n="platformModal.title">Select Platform</h3>
         <p class="platform-modal-text" data-i18n="platformModal.description">This app is available on both platforms. Choose where to view it:</p>
-        
+
         <div class="platform-buttons">
             <a href="#" class="platform-btn ios-btn" data-ios-btn>
-                <ion-icon name="logo-apple"></ion-icon>
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
                 <span data-i18n="platformModal.ios">iOS App Store</span>
             </a>
             <a href="#" class="platform-btn android-btn" data-android-btn>
-                <ion-icon name="logo-google-playstore"></ion-icon>
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.523 15.341c-.5 0-.91-.41-.91-.91s.41-.91.91-.91.91.41.91.91-.41.91-.91.91m-11.046 0c-.5 0-.91-.41-.91-.91s.41-.91.91-.91.91.41.91.91-.41.91-.91.91m11.372-6.03l1.821-3.156a.379.379 0 00-.139-.519.38.38 0 00-.519.139l-1.846 3.2A11.39 11.39 0 0012 7.798c-1.812 0-3.541.404-5.166 1.177L4.988 5.775a.38.38 0 10-.658.38l1.821 3.156C2.957 11.044.871 14.219.46 17.957h23.08c-.411-3.738-2.497-6.913-5.691-8.646"/></svg>
                 <span data-i18n="platformModal.android">Google Play Store</span>
             </a>
         </div>
     </section>
 </div>
 
-
-<!--
-  - custom js link
--->
 <script src="./assets/js/script.js"></script>
 
-<!--
-  - ionicon link
--->
-<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-
 </body>
-
 </html>

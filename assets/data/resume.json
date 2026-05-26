@@ -4,14 +4,14 @@
       "company": "Unicon Soft",
       "period": "2022 — Present",
       "position": {
-        "en": "Software Engineer | Mobile App Development",
-        "uz": "Dastur muhandisi | Mobil ilovalar ishlab chiqish",
-        "ru": "Инженер-программист | Разработка мобильных приложений"
+        "en": "Senior Mobile Engineer",
+        "uz": "Senior Mobile Engineer",
+        "ru": "Senior Mobile Engineer"
       },
       "description": {
-        "en": "An electronic document circulation system that provides control of executive discipline. The system consists of functions that automate the processes of document circulation and the control of the execution of tasks, and at the same time, several employees work on the document.",
-        "uz": "Ijro intizomini nazorat qilishni ta'minlaydigan elektron hujjat aylanma tizimi. Tizim hujjat aylanma jarayonlarini va topshiriqlar bajarilishini nazorat qilish jarayonlarini avtomatlashtirish funksiyalaridan iborat, bir vaqtning o'zida bir nechta xodimlar hujjat ustida ishlaydi.",
-        "ru": "Система электронного документооборота, обеспечивающая контроль исполнительской дисциплины. Система состоит из функций, которые автоматизируют процессы документооборота и контроля выполнения задач, при этом несколько сотрудников работают над документом одновременно."
+        "en": "Building electronic document circulation systems and digital citizen services for Uzbekistan's government. Contributing to IJRO.GOV.UZ (executive discipline platform), Raqamli Mahalla (community services), E-Huquqshunos (legal assistance), and other apps used across the country.",
+        "uz": "O'zbekiston hukumati uchun elektron hujjat aylanma tizimlari va raqamli fuqaro xizmatlarini ishlab chiqaman. IJRO.GOV.UZ (ijro intizomi platformasi), Raqamli Mahalla (mahalla xizmatlari), E-Huquqshunos (huquqiy yordam) va respublika bo'ylab foydalanilayotgan boshqa ilovalar ustida ishlayman.",
+        "ru": "Разрабатываю системы электронного документооборота и цифровые сервисы для граждан Узбекистана. Участвую в проектах IJRO.GOV.UZ (платформа исполнительской дисциплины), Raqamli Mahalla (сервисы махалли), E-Huquqshunos (юридическая помощь) и других приложениях, используемых по всей стране."
       }
     },
     {
@@ -23,9 +23,9 @@
         "ru": "Flutter разработчик"
       },
       "description": {
-        "en": "Worked with the team of 10+ members and provided end-to-end solutions. Designed and developed more than 5 mobile apps live on Play Store.",
-        "uz": "10+ a'zodan iborat jamoa bilan ishlash va to'liq yechimlarni taqdim etish. Play Store'da jonli 5 dan ortiq mobil ilovalarni loyihalash va ishlab chiqish.",
-        "ru": "Работал с командой из 10+ человек и предоставлял комплексные решения. Спроектировал и разработал более 5 мобильных приложений, доступных в Play Store."
+        "en": "Worked in a cross-functional team of 10+ engineers, designers, and product managers. Shipped 5+ Flutter apps to App Store and Google Play across e-commerce, services, and content domains.",
+        "uz": "10+ kishilik kross-funktsional jamoa (muhandislar, dizaynerlar, mahsulot menejerlari) bilan birga ishladim. E-tijorat, xizmatlar va kontent yo'nalishlarida App Store va Google Play'ga 5+ Flutter ilova chiqarildi.",
+        "ru": "Работал в кросс-функциональной команде из 10+ инженеров, дизайнеров и продакт-менеджеров. Выпустил 5+ Flutter-приложений в App Store и Google Play в сегментах e-commerce, услуг и контента."
       }
     },
     {
@@ -34,63 +34,40 @@
       "position": {
         "en": "Mobile Developer",
         "uz": "Mobil dasturchi",
-        "ru": "Мобильный разработчик"
+        "ru": "Mobile-разработчик"
       },
       "description": {
-        "en": "Worked with team of 5+ members and provided end-to-end solutions for clients. Designed and developed more than 2 mobile apps live on Play Store",
-        "uz": "5+ a'zodan iborat jamoa bilan ishlash va mijozlar uchun to'liq yechimlarni taqdim etish. Play Store'da jonli 2 dan ortiq mobil ilovalarni loyihalash va ishlab chiqish.",
-        "ru": "Работал с командой из 5+ человек и предоставлял комплексные решения для клиентов. Спроектировал и разработал более 2 мобильных приложений в Play Store."
+        "en": "Joined a 5-person product team as a Mobile Developer. Delivered end-to-end mobile solutions for clients and published 2+ Android apps to Google Play.",
+        "uz": "5 kishilik mahsulot jamoasiga Mobil Dasturchi sifatida qo'shildim. Mijozlar uchun to'liq mobil yechimlar yaratdik va Google Play'da 2+ Android ilova nashr etildi.",
+        "ru": "Присоединился к продуктовой команде из 5 человек в роли Mobile Developer. Разрабатывал комплексные мобильные решения для клиентов и опубликовал 2+ Android-приложения в Google Play."
       }
     }
   ],
   "education": [
     {
       "institution": {
-        "en": "Tashkent University of Information Technologies named after Muhammad ibn Musa al-Khwarizmi(TUIT)",
-        "uz": "Muhammad ibn Muso al-Xorazmiy nomidagi Toshkent Axborot Texnologiyalari Universiteti(TATU)",
-        "ru": "Ташкентский университет информационных технологий имени Мухаммада ибн Мусы аль-Хорезми(ТУИТ)"
+        "en": "Tashkent University of Information Technologies (TUIT) named after Muhammad al-Khwarizmi",
+        "uz": "Muhammad al-Xorazmiy nomidagi Toshkent Axborot Texnologiyalari Universiteti (TATU)",
+        "ru": "Ташкентский университет информационных технологий (ТУИТ) имени Мухаммада аль-Хорезми"
       },
       "period": "2018 — 2022",
       "degree": {
-        "en": "Software Engineering",
-        "uz": "Dasturiy ta'minot muhandisligi",
-        "ru": "Программная инженерия"
+        "en": "Bachelor's in Software Engineering",
+        "uz": "Dasturiy ta'minot muhandisligi (bakalavr)",
+        "ru": "Бакалавр программной инженерии"
       }
     }
   ],
   "skills": [
-    {
-      "name": "Flutter & Dart",
-      "percentage": 90
-    },
-    {
-      "name": "Android Development",
-      "percentage": 70
-    },
-    {
-      "name": "Java, Kotlin & Swift",
-      "percentage": 60
-    },
-    {
-      "name": "Database(SQLite)",
-      "percentage": 70
-    },
-    {
-      "name": "JIRA, Agile",
-      "percentage": 90
-    },
-    {
-      "name": "Uzbek",
-      "percentage": 100
-    },
-    {
-      "name": "English(Intermediate)",
-      "percentage": 60
-    },
-    {
-      "name": "Russian(Basic)",
-      "percentage": 30
-    }
+    { "name": "Flutter & Dart", "percentage": 95 },
+    { "name": "Native iOS (Swift)", "percentage": 65 },
+    { "name": "Native Android (Kotlin, Java)", "percentage": 70 },
+    { "name": "REST API & Firebase", "percentage": 85 },
+    { "name": "Databases (SQLite)", "percentage": 75 },
+    { "name": "Git & CI/CD", "percentage": 80 },
+    { "name": "Agile & Jira", "percentage": 90 },
+    { "name": "Uzbek (Native)", "percentage": 100 },
+    { "name": "English (Intermediate)", "percentage": 60 },
+    { "name": "Russian (Basic)", "percentage": 30 }
   ]
 }
-
