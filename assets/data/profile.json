@@ -10,8 +10,30 @@
       "uz": "Senior Mobile Engineer",
       "ru": "Senior Mobile Engineer"
     },
-    "avatar": "./assets/images/my-avatar.jpg"
+    "avatar": "./assets/images/my-avatar.jpg",
+    "roles": {
+      "en": ["Senior Mobile Engineer", "Flutter Developer", "iOS & Android Engineer", "15+ apps shipped 🚀"],
+      "uz": ["Senior Mobile Engineer", "Flutter dasturchi", "iOS va Android muhandisi", "15+ ilova productionda 🚀"],
+      "ru": ["Senior Mobile Engineer", "Flutter-разработчик", "Инженер iOS и Android", "15+ приложений в production 🚀"]
+    }
   },
+  "stats": [
+    {
+      "value": 5,
+      "suffix": "+",
+      "label": { "en": "Years of experience", "uz": "Yillik tajriba", "ru": "Лет опыта" }
+    },
+    {
+      "value": 15,
+      "suffix": "+",
+      "label": { "en": "Apps in production", "uz": "Ilova productionda", "ru": "Приложений в production" }
+    },
+    {
+      "value": 3,
+      "suffix": "",
+      "label": { "en": "Languages: Dart, Swift, Kotlin", "uz": "Til: Dart, Swift, Kotlin", "ru": "Языка: Dart, Swift, Kotlin" }
+    }
+  ],
   "contact": {
     "email": "shodmonov.uchqun@gmail.com",
     "phone": "+998933165960",

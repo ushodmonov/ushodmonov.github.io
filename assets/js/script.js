@@ -213,7 +213,10 @@ async function loadProfileData() {
     setText('hero-name', name);
     setText('hero-tagline', intro);
     setText('hero-location', location);
-    setText('hero-role', title);
+    const roles = getLocalized(data.personal.roles);
+    startTypewriter('hero-role', Array.isArray(roles) && roles.length ? roles : [title]);
+
+    renderHeroStats(data.stats);
 
     // About lead
     setText('about-intro', intro);
@@ -296,6 +299,8 @@ async function loadProfileData() {
         </a>
       `).join('');
     }
+
+    initMagnetic('.hero-social, .contact-social', 0.35);
 
   } catch (e) {
     console.error('Profile load failed:', e);
@@ -387,6 +392,8 @@ function animateSkillBars() {
       if (entry.isIntersecting) {
         const pct = entry.target.getAttribute('data-skill-fill');
         entry.target.style.width = pct + '%';
+        const pctLabel = entry.target.closest('.skill-item')?.querySelector('.skill-percentage');
+        if (pctLabel) animateCount(pctLabel, parseInt(pct, 10));
         observer.unobserve(entry.target);
       }
     });
@@ -431,6 +438,7 @@ async function loadProjects() {
 
     observeReveal(list.querySelectorAll('.reveal'));
     initPlatformModal();
+    initTilt('.project-link');
 
   } catch (e) {
     console.error('Projects load failed:', e);
@@ -440,6 +448,302 @@ async function loadProjects() {
       list.innerHTML = `<li class="error-message">${msg}</li>`;
     }
   }
+}
+
+/* -------------------- INTERACTIVE EFFECTS -------------------- */
+const prefersReducedMotion = () =>
+  window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* Typewriter — cycles through phrases; restarted on language change */
+let typewriterTimer = null;
+function startTypewriter(id, phrases) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  clearTimeout(typewriterTimer);
+
+  if (prefersReducedMotion() || phrases.length < 2) {
+    el.textContent = phrases[0] || '';
+    el.classList.remove('typewriter');
+    return;
+  }
+
+  el.classList.add('typewriter');
+  let phraseIdx = 0, charIdx = 0, deleting = false;
+
+  const tick = () => {
+    const phrase = phrases[phraseIdx];
+    charIdx += deleting ? -1 : 1;
+    el.textContent = phrase.slice(0, charIdx);
+
+    let delay = deleting ? 35 : 70;
+    if (!deleting && charIdx === phrase.length) {
+      deleting = true;
+      delay = 2200; // pause on full phrase
+    } else if (deleting && charIdx === 0) {
+      deleting = false;
+      phraseIdx = (phraseIdx + 1) % phrases.length;
+      delay = 400;
+    }
+    typewriterTimer = setTimeout(tick, delay);
+  };
+  tick();
+}
+
+/* Cursor-following glow in hero */
+function initHeroGlow() {
+  const glow = document.querySelector('[data-hero-glow]');
+  const hero = document.querySelector('.hero');
+  if (!glow || !hero || prefersReducedMotion()) return;
+  if (!window.matchMedia('(pointer: fine)').matches) return;
+
+  let targetX = 0, targetY = 0, x = 0, y = 0, raf = null;
+
+  const loop = () => {
+    x += (targetX - x) * 0.08;
+    y += (targetY - y) * 0.08;
+    glow.style.transform = `translate(${x}px, ${y}px)`;
+    if (Math.abs(targetX - x) > 0.5 || Math.abs(targetY - y) > 0.5) {
+      raf = requestAnimationFrame(loop);
+    } else {
+      raf = null;
+    }
+  };
+
+  hero.addEventListener('mousemove', (e) => {
+    const rect = hero.getBoundingClientRect();
+    targetX = e.clientX - rect.left - glow.offsetWidth / 2;
+    targetY = e.clientY - rect.top - glow.offsetHeight / 2;
+    glow.classList.add('visible');
+    if (!raf) raf = requestAnimationFrame(loop);
+  });
+  hero.addEventListener('mouseleave', () => glow.classList.remove('visible'));
+}
+
+/* 3D tilt on cards */
+function initTilt(selector) {
+  if (prefersReducedMotion() || !window.matchMedia('(pointer: fine)').matches) return;
+
+  document.querySelectorAll(selector).forEach(card => {
+    if (card.dataset.tiltBound) return;
+    card.dataset.tiltBound = '1';
+
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const px = (e.clientX - rect.left) / rect.width - 0.5;
+      const py = (e.clientY - rect.top) / rect.height - 0.5;
+      card.style.transform = `perspective(700px) rotateY(${px * 6}deg) rotateX(${py * -6}deg) translateY(-2px)`;
+      card.style.setProperty('--shine-x', `${(px + 0.5) * 100}%`);
+      card.style.setProperty('--shine-y', `${(py + 0.5) * 100}%`);
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = '';
+    });
+  });
+}
+
+/* Count-up animation for numbers */
+function animateCount(el, target, duration = 900) {
+  if (prefersReducedMotion()) {
+    el.textContent = target + '%';
+    return;
+  }
+  const start = performance.now();
+  const step = (now) => {
+    const t = Math.min((now - start) / duration, 1);
+    const eased = 1 - Math.pow(1 - t, 3);
+    el.textContent = Math.round(eased * target) + '%';
+    if (t < 1) requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+}
+
+/* Interactive particle constellation in hero */
+function initHeroParticles() {
+  const canvas = document.querySelector('[data-hero-particles]');
+  const hero = document.querySelector('.hero');
+  if (!canvas || !hero || prefersReducedMotion()) return;
+
+  const ctx = canvas.getContext('2d');
+  let particles = [];
+  let mouse = { x: -9999, y: -9999 };
+  let width = 0, height = 0;
+
+  const resize = () => {
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    width = hero.offsetWidth;
+    height = hero.offsetHeight;
+    canvas.width = width * dpr;
+    canvas.height = height * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+    const count = Math.min(Math.floor(width * height / 16000), 80);
+    particles = Array.from({ length: count }, () => ({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      vx: (Math.random() - 0.5) * 0.35,
+      vy: (Math.random() - 0.5) * 0.35,
+      r: Math.random() * 1.6 + 0.6,
+    }));
+  };
+
+  const themeColor = () => document.documentElement.getAttribute('data-theme') === 'dark'
+    ? '250, 250, 250' : '10, 10, 10';
+
+  const LINK_DIST = 110;
+  const MOUSE_DIST = 160;
+
+  const frame = () => {
+    ctx.clearRect(0, 0, width, height);
+    const rgb = themeColor();
+
+    for (const p of particles) {
+      // gentle pull toward the cursor
+      const dxm = mouse.x - p.x, dym = mouse.y - p.y;
+      const dm = Math.hypot(dxm, dym);
+      if (dm < MOUSE_DIST && dm > 1) {
+        p.vx += (dxm / dm) * 0.012;
+        p.vy += (dym / dm) * 0.012;
+      }
+      // speed cap + drift
+      const speed = Math.hypot(p.vx, p.vy);
+      if (speed > 0.7) { p.vx *= 0.7 / speed; p.vy *= 0.7 / speed; }
+      p.x += p.vx; p.y += p.vy;
+      if (p.x < 0 || p.x > width) p.vx *= -1;
+      if (p.y < 0 || p.y > height) p.vy *= -1;
+
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(${rgb}, 0.35)`;
+      ctx.fill();
+    }
+
+    // connecting lines
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const a = particles[i], b = particles[j];
+        const d = Math.hypot(a.x - b.x, a.y - b.y);
+        if (d < LINK_DIST) {
+          ctx.beginPath();
+          ctx.moveTo(a.x, a.y);
+          ctx.lineTo(b.x, b.y);
+          ctx.strokeStyle = `rgba(${rgb}, ${0.12 * (1 - d / LINK_DIST)})`;
+          ctx.lineWidth = 1;
+          ctx.stroke();
+        }
+      }
+      // line from particle to cursor
+      const p = particles[i];
+      const dm = Math.hypot(p.x - mouse.x, p.y - mouse.y);
+      if (dm < MOUSE_DIST) {
+        ctx.beginPath();
+        ctx.moveTo(p.x, p.y);
+        ctx.lineTo(mouse.x, mouse.y);
+        ctx.strokeStyle = `rgba(${rgb}, ${0.18 * (1 - dm / MOUSE_DIST)})`;
+        ctx.lineWidth = 1;
+        ctx.stroke();
+      }
+    }
+
+    requestAnimationFrame(frame);
+  };
+
+  hero.addEventListener('mousemove', (e) => {
+    const rect = hero.getBoundingClientRect();
+    mouse.x = e.clientX - rect.left;
+    mouse.y = e.clientY - rect.top;
+  });
+  hero.addEventListener('mouseleave', () => { mouse.x = -9999; mouse.y = -9999; });
+  window.addEventListener('resize', resize, { passive: true });
+
+  resize();
+  requestAnimationFrame(frame);
+}
+
+/* Magnetic pull on buttons and social icons */
+function initMagnetic(selector, strength = 0.3) {
+  if (prefersReducedMotion() || !window.matchMedia('(pointer: fine)').matches) return;
+
+  document.querySelectorAll(selector).forEach(el => {
+    if (el.dataset.magneticBound) return;
+    el.dataset.magneticBound = '1';
+
+    el.addEventListener('mousemove', (e) => {
+      const rect = el.getBoundingClientRect();
+      const dx = e.clientX - rect.left - rect.width / 2;
+      const dy = e.clientY - rect.top - rect.height / 2;
+      el.style.transform = `translate(${dx * strength}px, ${dy * strength}px)`;
+    });
+    el.addEventListener('mouseleave', () => {
+      el.style.transform = '';
+    });
+  });
+}
+
+/* Hero stats with count-up */
+function renderHeroStats(stats) {
+  const wrap = document.getElementById('hero-stats');
+  if (!wrap || !Array.isArray(stats)) return;
+
+  wrap.innerHTML = stats.map(s => `
+    <div class="hero-stat">
+      <span class="hero-stat-value" data-count-to="${s.value}" data-count-suffix="${escapeHtml(s.suffix || '')}">0</span>
+      <span class="hero-stat-label">${escapeHtml(getLocalized(s.label))}</span>
+    </div>
+  `).join('');
+
+  const values = wrap.querySelectorAll('[data-count-to]');
+  const run = (el) => {
+    const target = parseInt(el.getAttribute('data-count-to'), 10);
+    const suffix = el.getAttribute('data-count-suffix');
+    if (prefersReducedMotion()) { el.textContent = target + suffix; return; }
+    const start = performance.now();
+    const step = (now) => {
+      const t = Math.min((now - start) / 1200, 1);
+      const eased = 1 - Math.pow(1 - t, 3);
+      el.textContent = Math.round(eased * target) + suffix;
+      if (t < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  };
+
+  if (!('IntersectionObserver' in window)) { values.forEach(run); return; }
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) { run(entry.target); observer.unobserve(entry.target); }
+    });
+  }, { threshold: 0.5 });
+  values.forEach(v => observer.observe(v));
+}
+
+/* Cursor spotlight on cards */
+function initSpotlight(selector) {
+  if (!window.matchMedia('(pointer: fine)').matches) return;
+
+  document.querySelectorAll(selector).forEach(card => {
+    if (card.dataset.spotlightBound) return;
+    card.dataset.spotlightBound = '1';
+    card.classList.add('spotlight');
+
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      card.style.setProperty('--spot-x', `${e.clientX - rect.left}px`);
+      card.style.setProperty('--spot-y', `${e.clientY - rect.top}px`);
+    });
+  });
+}
+
+/* Back to top button */
+function initBackToTop() {
+  const btn = document.querySelector('[data-back-to-top]');
+  if (!btn) return;
+
+  window.addEventListener('scroll', () => {
+    btn.classList.toggle('visible', window.scrollY > 600);
+  }, { passive: true });
+
+  btn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: prefersReducedMotion() ? 'auto' : 'smooth' });
+  });
 }
 
 /* -------------------- PLATFORM MODAL -------------------- */
@@ -535,6 +839,9 @@ document.addEventListener('DOMContentLoaded', async () => {
   initLanguageSwitcher();
   initHeader();
   initReveal();
+  initHeroGlow();
+  initHeroParticles();
+  initBackToTop();
 
   // Load data
   await Promise.all([
@@ -542,4 +849,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     loadProjects(),
     loadResumeData(),
   ]);
+
+  initTilt('.about-card');
+  initMagnetic('.btn', 0.2);
+  initMagnetic('.hero-social, .contact-social', 0.35);
+  initSpotlight('.service-item');
+  initSpotlight('.contact-card');
 });
