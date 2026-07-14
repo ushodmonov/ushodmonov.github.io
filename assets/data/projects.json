@@ -103,5 +103,12 @@
     "image": "./assets/images/lawyer.png",
     "iosUrl": "https://apps.apple.com/us/app/e-huquqshunos/id6760208316",
     "androidUrl": "https://play.google.com/store/apps/details?id=uz.uniconsoft.ehuquqshunos"
+  },
+  {
+    "id": 16,
+    "title": "Radius Nasiya",
+    "image": "./assets/images/radius.webp",
+    "iosUrl": "https://apps.apple.com/uz/app/radius-nasiya/id6746245125",
+    "androidUrl": "https://play.google.com/store/apps/details?id=uz.radius.nasiya"
   }
 ]
