@@ -9,9 +9,7 @@
   {
     "id": 2,
     "title": "IJRO Calendar",
-    "image": "./assets/images/project_2.webp",
-    "iosUrl": "https://apps.apple.com/uz/app/ijro-calendar/id6449093586",
-    "androidUrl": "https://play.google.com/store/apps/details?id=uz.uniconsoft.calendar"
+    "image": "./assets/images/project_2.webp"
   },
   {
     "id": 3,
@@ -30,44 +28,32 @@
   {
     "id": 5,
     "title": "Cashbek",
-    "image": "./assets/images/project_4.webp",
-    "iosUrl": "https://apps.apple.com/us/app/cashbek/id6465134300",
-    "androidUrl": "https://play.google.com/store/apps/details?id=uz.omonat.mobile.cashbek"
+    "image": "./assets/images/project_4.webp"
   },
   {
     "id": 6,
     "title": "UGL Management",
-    "image": "./assets/images/project_5.webp",
-    "iosUrl": "https://apps.apple.com/us/app/ugl-management/id1642204648",
-    "androidUrl": "https://play.google.com/store/apps/details?id=com.ugl.management"
+    "image": "./assets/images/project_5.webp"
   },
   {
     "id": 7,
     "title": "Botio-Telegram bot yaratuvchi",
-    "image": "./assets/images/project_6.webp",
-    "iosUrl": "https://apps.apple.com/uz/app/botio-telegram-bot-yaratuvchi/id1594013167",
-    "androidUrl": "https://play.google.com/store/apps/details?id=uz.bozzi.seller.bot"
+    "image": "./assets/images/project_6.webp"
   },
   {
     "id": 8,
     "title": "Telemag",
-    "image": "./assets/images/project_8.webp",
-    "iosUrl": "https://apps.apple.com/uz/developer/viento/id1590815368",
-    "androidUrl": null
+    "image": "./assets/images/project_8.webp"
   },
   {
     "id": 9,
     "title": "Savdo uchun",
-    "image": "./assets/images/project_7.webp",
-    "iosUrl": "https://apps.apple.com/uz/app/savdo-uchun/id6462882889",
-    "androidUrl": "https://play.google.com/store/apps/details?id=uz.savdouchun.app"
+    "image": "./assets/images/project_7.webp"
   },
   {
     "id": 10,
     "title": "Shougram",
-    "image": "./assets/images/project_9.png",
-    "iosUrl": "https://apps.apple.com/uz/app/shougram/id6499446082",
-    "androidUrl": "https://play.google.com/store/apps/details?id=uz.app.shougram"
+    "image": "./assets/images/project_9.png"
   },
   {
     "id": 11,

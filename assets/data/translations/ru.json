@@ -67,6 +67,7 @@
     "title": "Выберите платформу",
     "description": "Это приложение доступно на обеих платформах. Выберите, где просмотреть:",
     "ios": "iOS App Store",
-    "android": "Google Play Store"
+    "android": "Google Play Store",
+    "notAvailable": "Пока недоступно в сторе"
   }
 }

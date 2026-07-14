@@ -688,6 +688,19 @@ ul, ol { list-style: none; }
   letter-spacing: 0.02em;
 }
 
+/* Projects not yet published to any store */
+.project-item.is-unavailable .project-link {
+  cursor: default;
+}
+.project-item.is-unavailable .project-item-icon-box {
+  display: none;
+}
+.project-item.is-unavailable .project-category {
+  color: var(--fg-subtle);
+  opacity: 0.75;
+  font-style: italic;
+}
+
 /* -------------------- RESUME -------------------- */
 .resume-block { margin-bottom: 64px; }
 .resume-block:last-child { margin-bottom: 0; }

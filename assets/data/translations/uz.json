@@ -67,6 +67,7 @@
     "title": "Platformani tanlang",
     "description": "Bu ilova ikki platformada ham mavjud. Qayerda ko'rishni tanlang:",
     "ios": "iOS App Store",
-    "android": "Google Play Store"
+    "android": "Google Play Store",
+    "notAvailable": "Hozircha storeda mavjud emas"
   }
 }

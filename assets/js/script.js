@@ -411,11 +411,14 @@ async function loadProjects() {
     list.innerHTML = '';
 
     projects.forEach((project, idx) => {
-      const platformText = (project.iosUrl && project.androidUrl) ? 'iOS · Android' :
+      const hasStore = project.iosUrl || project.androidUrl;
+      const notAvailableText = translations.platformModal?.notAvailable || 'Not yet available in store';
+      const platformText = !hasStore ? notAvailableText :
+                           (project.iosUrl && project.androidUrl) ? 'iOS · Android' :
                            (project.iosUrl ? 'iOS' : 'Android');
 
       const li = document.createElement('li');
-      li.className = 'project-item reveal';
+      li.className = hasStore ? 'project-item reveal' : 'project-item reveal is-unavailable';
       if (project.iosUrl) li.setAttribute('data-ios-url', project.iosUrl);
       if (project.androidUrl) li.setAttribute('data-android-url', project.androidUrl);
 
@@ -778,6 +781,7 @@ function initPlatformModal() {
       } else if (android) {
         window.open(android, '_blank');
       }
+      // Projects without any store link are not clickable (see .is-unavailable)
     });
   });
 

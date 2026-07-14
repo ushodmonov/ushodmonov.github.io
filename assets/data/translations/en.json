@@ -67,6 +67,7 @@
     "title": "Select Platform",
     "description": "This app is available on both platforms. Choose where to view it:",
     "ios": "iOS App Store",
-    "android": "Google Play Store"
+    "android": "Google Play Store",
+    "notAvailable": "Not yet available in store"
   }
 }
