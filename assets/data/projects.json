@@ -1,97 +1,87 @@
 [
   {
-    "id": 1,
     "title": "IJRO.GOV.UZ",
     "image": "./assets/images/project_1.webp",
     "iosUrl": "https://apps.apple.com/uz/app/ijro-gov-uz/id6444044841",
     "androidUrl": "https://play.google.com/store/apps/details?id=uz.uniconsoft.ijro&hl=en_US"
   },
   {
-    "id": 2,
     "title": "IJRO Calendar",
     "image": "./assets/images/project_2.webp"
   },
   {
-    "id": 3,
     "title": "Shaxsiy Topshiriqlar",
     "image": "./assets/images/project_3.webp",
     "iosUrl": "https://apps.apple.com/uz/app/shaxsiy-topshiriqlar/id6471255683",
     "androidUrl": "https://play.google.com/store/apps/details?id=uz.us.pt"
   },
   {
-    "id": 4,
     "title": "Raqamli Mahalla",
     "image": "./assets/images/mahalla.png",
     "iosUrl": "https://apps.apple.com/us/app/raqamli-mahalla/id6746395951",
     "androidUrl": "https://play.google.com/store/apps/details?id=uz.uniconsoft.mahalla"
   },
   {
-    "id": 5,
-    "title": "Cashbek",
-    "image": "./assets/images/project_4.webp"
-  },
-  {
-    "id": 6,
-    "title": "UGL Management",
-    "image": "./assets/images/project_5.webp"
-  },
-  {
-    "id": 7,
-    "title": "Botio-Telegram bot yaratuvchi",
-    "image": "./assets/images/project_6.webp"
-  },
-  {
-    "id": 8,
-    "title": "Telemag",
-    "image": "./assets/images/project_8.webp"
-  },
-  {
-    "id": 9,
-    "title": "Savdo uchun",
-    "image": "./assets/images/project_7.webp"
-  },
-  {
-    "id": 10,
-    "title": "Shougram",
-    "image": "./assets/images/project_9.png"
-  },
-  {
-    "id": 11,
-    "title": "ARkon",
-    "image": "./assets/images/project_10.png",
-    "iosUrl": "https://apps.apple.com/us/app/arkon-uz/id1483231581",
-    "androidUrl": "https://play.google.com/store/apps/details?id=uz.arkon.app"
-  },
-  {
-    "id": 12,
-    "title": "Arbuz",
-    "image": "./assets/images/arbuz.png",
-    "iosUrl": "https://apps.apple.com/uz/app/arb-uz/id6739709640",
-    "androidUrl": "https://play.google.com/store/apps/details?id=uz.arb.app"
-  },
-  {
-    "id": 13,
-    "title": "Business Arbuz",
-    "image": "./assets/images/business_arbuz.png",
-    "iosUrl": "https://apps.apple.com/uz/app/business-arbuz/id6743079552",
-    "androidUrl": "https://play.google.com/store/apps/details?id=uz.arb.business"
-  },
-  {
-    "id": 14,
-    "title": "Metanchi",
-    "image": "./assets/images/metanchi.png",
-    "iosUrl": "https://apps.apple.com/us/app/metanchi/id6759526612",
-    "androidUrl": "https://play.google.com/store/apps/details?id=uz.metanchi.mobile"
-  },
-  {
-    "id": 15,
     "title": "E-huquqshunos",
     "image": "./assets/images/lawyer.png",
     "iosUrl": "https://apps.apple.com/us/app/e-huquqshunos/id6760208316",
     "androidUrl": "https://play.google.com/store/apps/details?id=uz.uniconsoft.ehuquqshunos"
   },
   {
-    "id": 16,
+    "title": "Yuridik Markaz",
+    "image": "./assets/images/yuridik_markaz.png",
+    "iosUrl": "https://apps.apple.com/us/app/e-huquqshunos-yuridik-markaz/id6792729726",
+    "androidUrl": "https://play.google.com/store/apps/details?id=uz.uniconsoft.lawyer"
+  },
+  {
+    "title": "Cashbek",
+    "image": "./assets/images/project_4.webp"
+  },
+  {
+    "title": "UGL Management",
+    "image": "./assets/images/project_5.webp"
+  },
+  {
+    "title": "Botio-Telegram bot yaratuvchi",
+    "image": "./assets/images/project_6.webp"
+  },
+  {
+    "title": "Telemag",
+    "image": "./assets/images/project_8.webp"
+  },
+  {
+    "title": "Savdo uchun",
+    "image": "./assets/images/project_7.webp"
+  },
+  {
+    "title": "Shougram",
+    "image": "./assets/images/project_9.png"
+  },
+  {
+    "title": "ARkon",
+    "image": "./assets/images/project_10.png",
+    "iosUrl": "https://apps.apple.com/us/app/arkon-uz/id1483231581",
+    "androidUrl": "https://play.google.com/store/apps/details?id=uz.arkon.app"
+  },
+  {
+    "title": "Arbuz",
+    "image": "./assets/images/arbuz.png",
+    "iosUrl": "https://apps.apple.com/uz/app/arb-uz/id6739709640",
+    "androidUrl": "https://play.google.com/store/apps/details?id=uz.arb.app"
+  },
+  {
+    "title": "Business Arbuz",
+    "image": "./assets/images/business_arbuz.png",
+    "iosUrl": "https://apps.apple.com/uz/app/business-arbuz/id6743079552",
+    "androidUrl": "https://play.google.com/store/apps/details?id=uz.arb.business"
+  },
+  {
+    "title": "Metanchi",
+    "image": "./assets/images/metanchi.png",
+    "iosUrl": "https://apps.apple.com/us/app/metanchi/id6759526612",
+    "androidUrl": "https://play.google.com/store/apps/details?id=uz.metanchi.mobile"
+  },
+  {
     "title": "Radius Nasiya",
     "image": "./assets/images/radius.webp",
     "iosUrl": "https://apps.apple.com/uz/app/radius-nasiya/id6746245125",
