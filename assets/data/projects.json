@@ -6,16 +6,6 @@
     "androidUrl": "https://play.google.com/store/apps/details?id=uz.uniconsoft.ijro&hl=en_US"
   },
   {
-    "title": "IJRO Calendar",
-    "image": "./assets/images/project_2.webp"
-  },
-  {
-    "title": "Shaxsiy Topshiriqlar",
-    "image": "./assets/images/project_3.webp",
-    "iosUrl": "https://apps.apple.com/uz/app/shaxsiy-topshiriqlar/id6471255683",
-    "androidUrl": "https://play.google.com/store/apps/details?id=uz.us.pt"
-  },
-  {
     "title": "Raqamli Mahalla",
     "image": "./assets/images/mahalla.png",
     "iosUrl": "https://apps.apple.com/us/app/raqamli-mahalla/id6746395951",
@@ -34,28 +24,14 @@
     "androidUrl": "https://play.google.com/store/apps/details?id=uz.uniconsoft.lawyer"
   },
   {
-    "title": "Cashbek",
-    "image": "./assets/images/project_4.webp"
+    "title": "Shaxsiy Topshiriqlar",
+    "image": "./assets/images/project_3.webp",
+    "iosUrl": "https://apps.apple.com/uz/app/shaxsiy-topshiriqlar/id6471255683",
+    "androidUrl": "https://play.google.com/store/apps/details?id=uz.us.pt"
   },
   {
-    "title": "UGL Management",
-    "image": "./assets/images/project_5.webp"
-  },
-  {
-    "title": "Botio-Telegram bot yaratuvchi",
-    "image": "./assets/images/project_6.webp"
-  },
-  {
-    "title": "Telemag",
-    "image": "./assets/images/project_8.webp"
-  },
-  {
-    "title": "Savdo uchun",
-    "image": "./assets/images/project_7.webp"
-  },
-  {
-    "title": "Shougram",
-    "image": "./assets/images/project_9.png"
+    "title": "IJRO Calendar",
+    "image": "./assets/images/project_2.webp"
   },
   {
     "title": "ARkon",
@@ -86,5 +62,29 @@
     "image": "./assets/images/radius.webp",
     "iosUrl": "https://apps.apple.com/uz/app/radius-nasiya/id6746245125",
     "androidUrl": "https://play.google.com/store/apps/details?id=uz.radius.nasiya"
+  },
+  {
+    "title": "Shougram",
+    "image": "./assets/images/project_9.png"
+  },
+  {
+    "title": "Cashbek",
+    "image": "./assets/images/project_4.webp"
+  },
+  {
+    "title": "UGL Management",
+    "image": "./assets/images/project_5.webp"
+  },
+  {
+    "title": "Botio-Telegram bot yaratuvchi",
+    "image": "./assets/images/project_6.webp"
+  },
+  {
+    "title": "Telemag",
+    "image": "./assets/images/project_8.webp"
+  },
+  {
+    "title": "Savdo uchun",
+    "image": "./assets/images/project_7.webp"
   }
 ]
